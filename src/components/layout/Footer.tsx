@@ -24,15 +24,7 @@ export default function Footer() {
   const [email, setEmail] = useState('');
 
   const handleWhatsApp = () => {
-    window.open('https://wa.me/543814199442?text=¡Hola! Tengo una consulta 😊', '_blank');
-  };
-
-  const handleNewsletter = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      toast.success('¡Te suscribiste al newsletter! Te mantendremos informado de nuestras ofertas.');
-      setEmail('');
-    }
+    window.open('https://wa.me/543816618632?text=¡Hola! Tengo una consulta 😊', '_blank');
   };
 
   const quickLinks = [
@@ -42,60 +34,22 @@ export default function Footer() {
     { name: 'Ofertas', href: '#ofertas' },
   ];
 
-  const categories = [
-    { name: 'Electrónicos', href: '#' },
-    { name: 'Computadoras', href: '#' },
-    { name: 'Accesorios', href: '#' },
-    { name: 'Gaming', href: '#' },
-  ];
-
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gray-900 text-white">
-      {/* Newsletter Section */}
-      <div className="bg-blue-600 py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold mb-2">¡No te pierdas nuestras ofertas!</h3>
-              <p className="text-blue-100">
-                Suscribite al newsletter y recibí descuentos exclusivos
-              </p>
-            </div>
-            
-            <form onSubmit={handleNewsletter} className="flex w-full md:w-auto gap-2">
-              <Input
-                type="email"
-                placeholder="tu@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-white text-gray-900 border-0 md:w-80"
-                required
-              />
-              <Button 
-                type="submit" 
-                variant="secondary"
-                className="bg-white text-blue-600 hover:bg-gray-100 whitespace-nowrap"
-              >
-                Suscribirme
-              </Button>
-            </form>
-          </div>
-        </div>
-      </div>
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">ME</span>
+              <div className="w-8 h-8 bg-red-800 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-sm">SS</span>
               </div>
-              <span className="font-bold text-xl">Mi E-commerce</span>
+              <span className="font-bold text-xl">Sorella Store</span>
             </div>
             
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -106,40 +60,40 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-sm">
-                <Phone className="h-4 w-4 text-blue-400" />
+                <Phone className="h-4 w-4 text-red-400" />
                 <span>+54 381 419-9442</span>
               </div>
               
               <div className="flex items-center space-x-3 text-sm">
-                <Mail className="h-4 w-4 text-blue-400" />
+                <Mail className="h-4 w-4 text-red-400" />
                 <span>info@miecommerce.com</span>
               </div>
               
               <div className="flex items-center space-x-3 text-sm">
-                <MapPin className="h-4 w-4 text-blue-400" />
+                <MapPin className="h-4 w-4 text-red-400" />
                 <span>San Miguel de Tucumán, Argentina</span>
               </div>
 
               <div className="flex items-center space-x-3 text-sm">
-                <Clock className="h-4 w-4 text-blue-400" />
+                <Clock className="h-4 w-4 text-red-400" />
                 <span>Lun - Sáb: 9:00 - 20:00hs</span>
               </div>
             </div>
 
             {/* Social Media */}
             <div className="flex space-x-3 pt-4">
-              <Button size="icon" variant="outline" className="border-gray-600 hover:bg-blue-600">
+              <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-blue-600">
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button size="icon" variant="outline" className="border-gray-600 hover:bg-pink-600">
+              <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-pink-600">
                 <Instagram className="h-4 w-4" />
               </Button>
-              <Button size="icon" variant="outline" className="border-gray-600 hover:bg-blue-400">
+              <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-blue-400">
                 <Twitter className="h-4 w-4" />
               </Button>
               <Button 
                 size="icon" 
-                variant="outline" 
+                variant="ghost" 
                 className="border-gray-600 hover:bg-green-600"
                 onClick={handleWhatsApp}
               >
@@ -184,47 +138,6 @@ export default function Footer() {
               <li>
                 <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
                   Preguntas Frecuentes
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4">Categorías</h4>
-            <ul className="space-y-2">
-              {categories.map((category) => (
-                <li key={category.name}>
-                  <Link 
-                    href={category.href}
-                    className="text-gray-300 hover:text-white transition-colors text-sm"
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <h4 className="font-semibold text-lg mb-4 mt-6">Servicio</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Soporte Técnico
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Política de Devoluciones
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Términos y Condiciones
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Privacidad
                 </Link>
               </li>
             </ul>

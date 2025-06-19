@@ -7,12 +7,19 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useCartStore } from '@/lib/store';
 import Cart from './Cart';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
-  const totalItems = useCartStore(state => state.getTotalItems());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  
+  // Arreglo para hidratación
+  const totalItems = useCartStore(state => state.getTotalItems());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navigation = [
     { name: 'Inicio', href: '/' },
@@ -38,11 +45,11 @@ export default function Header() {
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <Phone className="h-3 w-3" />
-                <span>+54 381 419-9442</span>
+                <span>+54 381 661-8632</span>
               </div>
               <div className="flex items-center gap-1">
                 <Mail className="h-3 w-3" />
-                <span>info@miecommerce.com</span>
+                <span>jpbonacossa@gmail.com</span>
               </div>
             </div>
             <div className="flex items-center gap-1">
@@ -60,10 +67,10 @@ export default function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">ME</span>
+                <span className="text-white font-bold text-sm">SS</span>
               </div>
               <span className="font-bold text-xl hidden sm:inline-block">
-                Mi E-commerce
+                Sorella Store
               </span>
             </Link>
 
@@ -98,7 +105,7 @@ export default function Header() {
                 <SheetTrigger asChild>
                   <Button variant="outline" size="icon" className="relative">
                     <ShoppingCart className="h-4 w-4" />
-                    {totalItems > 0 && (
+                    {mounted && totalItems > 0 && (
                       <Badge 
                         variant="destructive" 
                         className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
@@ -124,9 +131,9 @@ export default function Header() {
                   <div className="flex flex-col space-y-4 mt-6">
                     <Link href="/" className="flex items-center space-x-2 pb-4 border-b">
                       <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-sm">ME</span>
+                        <span className="text-white font-bold text-sm">SS</span>
                       </div>
-                      <span className="font-bold text-xl">Mi E-commerce</span>
+                      <span className="font-bold text-xl">Sorella Store</span>
                     </Link>
                     
                     {navigation.map((item) => (

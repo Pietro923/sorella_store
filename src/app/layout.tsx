@@ -2,18 +2,26 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 import Header from '@/components/layout/Header';
-import ToastProvider from '@/components/ui/toast-provider';
 import Footer from '@/components/layout/Footer';
+import ToastProvider from '@/components/ui/toast-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Mi E-commerce - Los mejores productos',
-  description: 'Encuentra los mejores productos al mejor precio',
-  keywords: 'ecommerce, productos, ventas, whatsapp',
+  metadataBase: new URL('https://tu-dominio.com'), // Cambia por tu dominio real
+  title: 'Mi E-commerce - Fundas Premium para iPhone',
+  description: 'Fundas exclusivas para iPhone. Protección y estilo únicos. Envío rápido en Tucumán.',
+  keywords: 'fundas iphone, protección iphone, accesorios iphone, tucuman',
   openGraph: {
-    title: 'Mi E-commerce',
-    description: 'Los mejores productos al mejor precio',
+    title: 'Mi E-commerce - Fundas Premium para iPhone',
+    description: 'Fundas exclusivas para iPhone. Protección y estilo únicos.',
+    images: ['/og-image.jpg'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mi E-commerce - Fundas Premium para iPhone',
+    description: 'Fundas exclusivas para iPhone. Protección y estilo únicos.',
     images: ['/og-image.jpg'],
   },
 };

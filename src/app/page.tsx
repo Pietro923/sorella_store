@@ -87,7 +87,7 @@ export default function Home() {
             <Button 
               size="lg" 
               variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-blue-600"
+              className="border-white text-green-400 hover:bg-white hover:text-green-600 "
               onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Quiero consultar sobre las fundas para iPhone 😊', '_blank')}
             >
               Consultar por WhatsApp

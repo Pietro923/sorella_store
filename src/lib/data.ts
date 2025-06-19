@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'SMOKY CASE GREEN',
     description: 'Funda exclusiva en verde, diseño disruptivo con bordes reforzados. Material: TPU rígido.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=101',
+    image: 'smoky-case-green', // El Public ID que asignaste en Cloudinary
     category: 'Fundas',
     stock: 12,
     model: ['iPhone 11', 'iPhone 13', 'iPhone 16']
@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: 'SMOKY CASE GRAY',
     description: 'Funda gris minimalista con actitud. Material: TPU rígido con protección reforzada.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=102',
+    image: 'smoky-case-gray', // El Public ID que asignaste en Cloudinary
     category: 'Fundas',
     stock: 10,
     model: ['iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16 Pro Max']
@@ -26,17 +26,18 @@ export const products: Product[] = [
     name: 'Funda GUM Violeta',
     description: 'Diseño vibrante y suave al tacto. Material: TPU rígido.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=103',
+    image: 'gum-violeta', // El Public ID que asignaste en Cloudinary
     category: 'Fundas',
     stock: 14,
     model: ['iPhone 13', 'iPhone 13 Pro Max', 'iPhone 15', 'iPhone 16']
   },
+  
   {
     id: '4',
     name: 'Funda GUM Negro Mate',
     description: 'Diseño minimalista negro mate. Elegancia moderna y atemporal.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=104',
+    image: 'gum-negro-mate',
     category: 'Fundas',
     stock: 8,
     model: ['iPhone 13']
@@ -46,7 +47,7 @@ export const products: Product[] = [
     name: 'Funda GUM Negro',
     description: 'Diseño clásico y versátil. Protección y estilo.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=105',
+    image: 'gum-negro',
     category: 'Fundas',
     stock: 9,
     model: ['iPhone 14', 'iPhone 15 Pro Max']
@@ -56,7 +57,7 @@ export const products: Product[] = [
     name: 'Funda VIBE Cherry',
     description: 'Funda cereza intensa con personalidad.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=106',
+    image: 'vibe-cherry',
     category: 'Fundas',
     stock: 7,
     model: ['iPhone 15 Pro Max']
@@ -66,7 +67,7 @@ export const products: Product[] = [
     name: 'Funda VIBE Gray',
     description: 'Diseño neutro y elegante. Estilo minimalista.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=107',
+    image: 'vibe-gray',
     category: 'Fundas',
     stock: 11,
     model: ['iPhone 11']
@@ -76,7 +77,7 @@ export const products: Product[] = [
     name: 'Funda VIBE Pink',
     description: 'Diseño rosa pastel moderno y delicado.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=108',
+    image: 'vibe-pink',
     category: 'Fundas',
     stock: 10,
     model: ['iPhone 12 Pro']
@@ -86,7 +87,7 @@ export const products: Product[] = [
     name: 'Funda Cherry',
     description: 'Diseño cereza con protección y estilo.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=109',
+    image: 'cherry',
     category: 'Fundas',
     stock: 10,
     model: ['iPhone 11']
@@ -96,7 +97,7 @@ export const products: Product[] = [
     name: 'Funda BOARD',
     description: 'Diseño en jean auténtico con estilo y protección.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=110',
+    image: 'board',
     category: 'Fundas',
     stock: 6,
     model: ['iPhone 13', 'iPhone 15 Pro Max']
@@ -106,7 +107,7 @@ export const products: Product[] = [
     name: 'Funda Ripple Negro',
     description: 'Textura especial en negro, elegante y resistente.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=111',
+    image: 'ripple-negro',
     category: 'Fundas',
     stock: 8,
     model: ['iPhone 13 Pro']
@@ -116,7 +117,7 @@ export const products: Product[] = [
     name: 'Funda Ripple Purple',
     description: 'Diseño en púrpura con textura única.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=112',
+    image: 'ripple-purple',
     category: 'Fundas',
     stock: 7,
     model: ['iPhone 14 Pro Max']
@@ -126,7 +127,7 @@ export const products: Product[] = [
     name: 'Funda FIRE Blue',
     description: 'Funda azul llamativa con textura especial.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=113',
+    image: 'flame-case-blue',
     category: 'Fundas',
     stock: 6,
     model: ['iPhone 13 Pro Max']
@@ -136,7 +137,7 @@ export const products: Product[] = [
     name: 'Funda FIRE Gray',
     description: 'Textura única en gris para proteger con estilo.',
     price: 8999,
-    image: 'https://picsum.photos/300/300?random=114',
+    image: 'flame-case-gray',
     category: 'Fundas',
     stock: 9,
     model: ['iPhone 13']

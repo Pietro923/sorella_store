@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useCartStore } from '@/lib/store';
+import { getProductImage } from '@/lib/cloudinary'; // ✅ Importar Cloudinary
 import { Product } from '@/types';
 import Image from 'next/image';
 import { toast } from 'sonner';
@@ -82,10 +83,11 @@ export default function ProductDetail({ product }: ProductDetailProps) {
         {/* Imagen */}
         <div className="aspect-square relative overflow-hidden rounded-lg border">
           <Image
-            src={product.image}
+            src={getProductImage(product.image, 'detail')} // ✅ Usar Cloudinary
             alt={product.name}
             fill
             className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
 

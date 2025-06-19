@@ -1,16 +1,17 @@
-// src/app/products/[id]/page.tsx
 import { products } from '@/lib/data';
 import { notFound } from 'next/navigation';
 import ProductDetail from '@/components/product/ProductDetail';
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const product = products.find(p => p.id === params.id);
+export default async function ProductPage({ params }: ProductPageProps) {
+  // Await params en Next.js 15
+  const { id } = await params;
+  const product = products.find(p => p.id === id);
 
   if (!product) {
     notFound();

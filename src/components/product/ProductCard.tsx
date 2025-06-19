@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useCartStore } from '@/lib/store';
+import { getProductImage } from '@/lib/cloudinary';
 import { Product } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -34,10 +35,11 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product.id}`}>
         <div className="aspect-square relative overflow-hidden">
           <Image
-            src={product.image}
+            src={getProductImage(product.image, 'card')}
             alt={product.name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           />
         </div>
       </Link>
