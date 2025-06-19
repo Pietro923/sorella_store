@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { 
   Phone, 
   Mail, 
@@ -17,12 +16,8 @@ import {
   Heart
 } from 'lucide-react';
 import Link from 'next/link';
-import { useState } from 'react';
-import { toast } from 'sonner';
 
 export default function Footer() {
-  const [email, setEmail] = useState('');
-
   const handleWhatsApp = () => {
     window.open('https://wa.me/543816618632?text=¡Hola! Tengo una consulta 😊', '_blank');
   };

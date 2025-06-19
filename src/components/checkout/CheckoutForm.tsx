@@ -12,6 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useCartStore } from '@/lib/store';
 import { CheckoutForm as CheckoutFormType } from '@/types';
+import Link from 'next/link'; // ✅ Importar Link
 
 const checkoutSchema = z.object({
   name: z.string().min(2, 'El nombre debe tener al menos 2 caracteres'),
@@ -94,7 +95,7 @@ export default function CheckoutForm() {
     
     try {
       const whatsappMessage = generateWhatsAppMessage(data);
-      const phoneNumber = '543814199442'; // Reemplaza con tu número de WhatsApp
+      const phoneNumber = '543814199442';
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
       
       // Abrir WhatsApp
@@ -106,7 +107,8 @@ export default function CheckoutForm() {
         alert('¡Pedido enviado! Te redirigimos a WhatsApp para completar la compra.');
       }, 1000);
       
-    } catch (error) {
+    } catch {
+      // ✅ Removido 'error' no usado y simplificado el catch
       alert('Error al procesar el pedido. Inténtalo nuevamente.');
     } finally {
       setIsSubmitting(false);
@@ -121,7 +123,7 @@ export default function CheckoutForm() {
           Agrega algunos productos antes de proceder al checkout
         </p>
         <Button asChild>
-          <a href="/">Volver a la tienda</a>
+          <Link href="/">Volver a la tienda</Link>
         </Button>
       </div>
     );

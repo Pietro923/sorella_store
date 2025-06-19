@@ -55,13 +55,6 @@ export default function Home() {
   // Productos más vendidos (simulado - por stock)
   const bestSellers = featuredLoading ? [] : products.sort((a, b) => b.stock - a.stock).slice(0, 3);
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS'
-    }).format(price);
-  };
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
