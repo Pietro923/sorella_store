@@ -211,7 +211,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
             <div className="flex items-center space-x-1">
-              <span>&copy; {currentYear} Mi E-commerce.</span>
+              <span>&copy; {currentYear} Sorella Store.</span>
               <span>Todos los derechos reservados.</span>
             </div>
             
