@@ -7,7 +7,11 @@ import { SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Cart() {
+interface CartProps {
+  onClose?: () => void;
+}
+
+export default function Cart({ onClose }: CartProps) {
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCartStore();
   const total = getTotalPrice();
 
@@ -16,6 +20,13 @@ export default function Cart() {
       style: 'currency',
       currency: 'ARS'
     }).format(price);
+  };
+
+  const handleCheckout = () => {
+    // Cerrar el carrito antes de navegar
+    if (onClose) {
+      onClose();
+    }
   };
 
   if (items.length === 0) {
@@ -98,7 +109,7 @@ export default function Cart() {
         </div>
         
         <div className="space-y-2">
-          <Button asChild className="w-full">
+          <Button asChild className="w-full" onClick={handleCheckout}>
             <Link href="/checkout">Finalizar Compra</Link>
           </Button>
           

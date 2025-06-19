@@ -1,13 +1,14 @@
-// src/components/product/ProductDetail.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Minus, Plus, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useCartStore } from '@/lib/store';
 import { Product } from '@/types';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 interface ProductDetailProps {
   product: Product;
@@ -15,7 +16,17 @@ interface ProductDetailProps {
 
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [quantity, setQuantity] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
   const addItem = useCartStore(state => state.addItem);
+
+  // Simular carga del producto
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-AR', {
@@ -28,8 +39,47 @@ export default function ProductDetail({ product }: ProductDetailProps) {
     for (let i = 0; i < quantity; i++) {
       addItem(product);
     }
+    toast.success(`${quantity} ${product.name} agregado${quantity > 1 ? 's' : ''} al carrito`);
     setQuantity(1);
   };
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Imagen skeleton */}
+          <Skeleton className="aspect-square w-full rounded-lg" />
+
+          {/* Contenido skeleton */}
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <Skeleton className="h-6 w-24" /> {/* Badge */}
+              <Skeleton className="h-10 w-3/4" /> {/* Título */}
+              <div className="space-y-2">
+                <Skeleton className="h-5 w-full" />
+                <Skeleton className="h-5 w-2/3" />
+              </div>
+              <Skeleton className="h-12 w-1/2" /> {/* Precio */}
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <Skeleton className="h-6 w-20" />
+                <div className="flex items-center space-x-2">
+                  <Skeleton className="h-10 w-10" />
+                  <Skeleton className="h-6 w-8" />
+                  <Skeleton className="h-10 w-10" />
+                </div>
+              </div>
+
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="h-12 w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
