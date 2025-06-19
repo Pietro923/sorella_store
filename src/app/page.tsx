@@ -9,7 +9,7 @@ import ProductSkeleton, { ProductGridSkeleton } from '@/components/ProductSkelet
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Star, Truck, Shield, Headphones, Smartphone, Sparkles, Award, Heart } from 'lucide-react';
+import { ArrowRight, Star, Truck, Shield, Smartphone, Sparkles, Award, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
