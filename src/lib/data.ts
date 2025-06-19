@@ -3,99 +3,148 @@ import { Product } from '@/types';
 export const products: Product[] = [
   {
     id: '1',
-    name: 'Smartphone Samsung Galaxy S24',
-    description: 'Smartphone de última generación con cámara de 108MP, 8GB RAM y 256GB storage',
-    price: 899999,
-    image: 'https://picsum.photos/300/300?random=1',
-    category: 'Electrónicos',
-    stock: 10
+    name: 'SMOKY CASE GREEN',
+    description: 'Funda exclusiva en verde, diseño disruptivo con bordes reforzados. Material: TPU rígido.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=101',
+    category: 'Fundas',
+    stock: 12,
+    model: ['iPhone 11', 'iPhone 13', 'iPhone 16']
   },
   {
     id: '2',
-    name: 'Auriculares Bluetooth Sony WH-1000XM5',
-    description: 'Auriculares inalámbricos con cancelación de ruido activa y 30 horas de batería',
-    price: 189999,
-    image: 'https://picsum.photos/300/300?random=2',
-    category: 'Accesorios',
-    stock: 25
+    name: 'SMOKY CASE GRAY',
+    description: 'Funda gris minimalista con actitud. Material: TPU rígido con protección reforzada.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=102',
+    category: 'Fundas',
+    stock: 10,
+    model: ['iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16 Pro Max']
   },
   {
     id: '3',
-    name: 'Notebook Gaming ASUS ROG',
-    description: 'Laptop para gaming con RTX 4060, Intel i7 y 16GB RAM DDR5',
-    price: 1299999,
-    image: 'https://picsum.photos/300/300?random=3',
-    category: 'Computadoras',
-    stock: 5
+    name: 'Funda GUM Violeta',
+    description: 'Diseño vibrante y suave al tacto. Material: TPU rígido.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=103',
+    category: 'Fundas',
+    stock: 14,
+    model: ['iPhone 13', 'iPhone 13 Pro Max', 'iPhone 15', 'iPhone 16']
   },
   {
     id: '4',
-    name: 'iPad Air 11" M2',
-    description: 'Tablet con chip M2, pantalla Liquid Retina de 11 pulgadas y Apple Pencil compatible',
-    price: 699999,
-    image: 'https://picsum.photos/300/300?random=4',
-    category: 'Electrónicos',
-    stock: 8
+    name: 'Funda GUM Negro Mate',
+    description: 'Diseño minimalista negro mate. Elegancia moderna y atemporal.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=104',
+    category: 'Fundas',
+    stock: 8,
+    model: ['iPhone 13']
   },
   {
     id: '5',
-    name: 'Smartwatch Apple Watch Series 9',
-    description: 'Reloj inteligente con GPS, monitor de salud y pantalla Always-On',
-    price: 449999,
-    image: 'https://picsum.photos/300/300?random=5',
-    category: 'Accesorios',
-    stock: 15
+    name: 'Funda GUM Negro',
+    description: 'Diseño clásico y versátil. Protección y estilo.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=105',
+    category: 'Fundas',
+    stock: 9,
+    model: ['iPhone 14', 'iPhone 15 Pro Max']
   },
   {
     id: '6',
-    name: 'MacBook Pro 14" M3',
-    description: 'Laptop profesional con chip M3, 16GB RAM y pantalla Liquid Retina XDR',
-    price: 1999999,
-    image: 'https://picsum.photos/300/300?random=6',
-    category: 'Computadoras',
-    stock: 3
+    name: 'Funda VIBE Cherry',
+    description: 'Funda cereza intensa con personalidad.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=106',
+    category: 'Fundas',
+    stock: 7,
+    model: ['iPhone 15 Pro Max']
   },
   {
     id: '7',
-    name: 'Cámara Canon EOS R6 Mark II',
-    description: 'Cámara mirrorless full-frame con 24.2MP y grabación 4K',
-    price: 2499999,
-    image: 'https://picsum.photos/300/300?random=7',
-    category: 'Electrónicos',
-    stock: 4
+    name: 'Funda VIBE Gray',
+    description: 'Diseño neutro y elegante. Estilo minimalista.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=107',
+    category: 'Fundas',
+    stock: 11,
+    model: ['iPhone 11']
   },
   {
     id: '8',
-    name: 'Teclado Mecánico Logitech G915',
-    description: 'Teclado gaming inalámbrico con switches mecánicos y RGB',
-    price: 159999,
-    image: 'https://picsum.photos/300/300?random=8',
-    category: 'Accesorios',
-    stock: 20
+    name: 'Funda VIBE Pink',
+    description: 'Diseño rosa pastel moderno y delicado.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=108',
+    category: 'Fundas',
+    stock: 10,
+    model: ['iPhone 12 Pro']
   },
   {
     id: '9',
-    name: 'Monitor Samsung 32" 4K',
-    description: 'Monitor curvo 4K UHD de 32 pulgadas con HDR10 y 144Hz',
-    price: 449999,
-    image: 'https://picsum.photos/300/300?random=9',
-    category: 'Computadoras',
-    stock: 7
+    name: 'Funda Cherry',
+    description: 'Diseño cereza con protección y estilo.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=109',
+    category: 'Fundas',
+    stock: 10,
+    model: ['iPhone 11']
   },
   {
     id: '10',
-    name: 'Drone DJI Mini 3',
-    description: 'Drone compacto con cámara 4K, estabilización gimbal y 38 min de vuelo',
-    price: 599999,
-    image: 'https://picsum.photos/300/300?random=10',
-    category: 'Electrónicos',
-    stock: 6
+    name: 'Funda BOARD',
+    description: 'Diseño en jean auténtico con estilo y protección.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=110',
+    category: 'Fundas',
+    stock: 6,
+    model: ['iPhone 13', 'iPhone 15 Pro Max']
   },
+  {
+    id: '11',
+    name: 'Funda Ripple Negro',
+    description: 'Textura especial en negro, elegante y resistente.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=111',
+    category: 'Fundas',
+    stock: 8,
+    model: ['iPhone 13 Pro']
+  },
+  {
+    id: '12',
+    name: 'Funda Ripple Purple',
+    description: 'Diseño en púrpura con textura única.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=112',
+    category: 'Fundas',
+    stock: 7,
+    model: ['iPhone 14 Pro Max']
+  },
+  {
+    id: '13',
+    name: 'Funda FIRE Blue',
+    description: 'Funda azul llamativa con textura especial.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=113',
+    category: 'Fundas',
+    stock: 6,
+    model: ['iPhone 13 Pro Max']
+  },
+  {
+    id: '14',
+    name: 'Funda FIRE Gray',
+    description: 'Textura única en gris para proteger con estilo.',
+    price: 8999,
+    image: 'https://picsum.photos/300/300?random=114',
+    category: 'Fundas',
+    stock: 9,
+    model: ['iPhone 13']
+  }
 ];
 
+// Extraemos todos los modelos sin repetir
 export const categories = [
   'Todos',
-  'Electrónicos',
-  'Accesorios',
-  'Computadoras'
+  ...Array.from(new Set(products.flatMap((p) => p.model)))
 ];

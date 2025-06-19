@@ -9,7 +9,7 @@ import ProductSkeleton, { ProductGridSkeleton } from '@/components/ProductSkelet
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Star, Truck, Shield, Headphones } from 'lucide-react';
+import { ArrowRight, Star, Truck, Shield, Headphones, Smartphone } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -20,12 +20,10 @@ export default function Home() {
 
   // Simular carga de datos
   useEffect(() => {
-    // Simular carga de productos destacados
     const featuredTimer = setTimeout(() => {
       setFeaturedLoading(false);
     }, 1000);
 
-    // Simular carga de todos los productos
     const allProductsTimer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -39,9 +37,14 @@ export default function Home() {
   const filteredProducts = useMemo(() => {
     if (isLoading) return [];
     return products.filter(product => {
-      const matchesCategory = selectedCategory === 'Todos' || product.category === selectedCategory;
+      // Filtrar por modelo de iPhone
+      const matchesCategory = selectedCategory === 'Todos' || 
+                              product.model.includes(selectedCategory);
+      
+      // Filtrar por búsqueda en nombre y descripción
       const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            product.description.toLowerCase().includes(searchQuery.toLowerCase());
+      
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchQuery, isLoading]);
@@ -49,7 +52,7 @@ export default function Home() {
   // Productos destacados (los primeros 4)
   const featuredProducts = featuredLoading ? [] : products.slice(0, 4);
   
-  // Productos más vendidos (simulado - los que tienen más stock)
+  // Productos más vendidos (simulado - por stock)
   const bestSellers = featuredLoading ? [] : products.sort((a, b) => b.stock - a.stock).slice(0, 3);
 
   const formatPrice = (price: number) => {
@@ -64,20 +67,30 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+              <Smartphone className="h-10 w-10 text-white" />
+            </div>
+          </div>
           <h1 className="text-5xl font-bold mb-6">
-            Encuentra Todo lo que Necesitas
+            Fundas Premium para tu iPhone
           </h1>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Los mejores productos de tecnología al mejor precio. 
-            Envío rápido y atención personalizada vía WhatsApp.
+            Protección y estilo únicos. Diseños exclusivos para todos los modelos de iPhone. 
+            Calidad garantizada y envío inmediato.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-              Ver Productos
+              Ver Fundas
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              Contactar por WhatsApp
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-blue-600"
+              onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Quiero consultar sobre las fundas para iPhone 😊', '_blank')}
+            >
+              Consultar por WhatsApp
             </Button>
           </div>
         </div>
@@ -94,7 +107,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-xl font-semibold">Envío Rápido</h3>
                 <p className="text-muted-foreground">
-                  Entrega en 24-48hs en CABA y GBA. Coordinamos por WhatsApp.
+                  Entrega en 24-48hs en Tucumán. Coordinamos por WhatsApp.
                 </p>
               </CardContent>
             </Card>
@@ -104,9 +117,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                   <Shield className="h-8 w-8 text-green-600" />
                 </div>
-                <h3 className="text-xl font-semibold">Compra Segura</h3>
+                <h3 className="text-xl font-semibold">Calidad Premium</h3>
                 <p className="text-muted-foreground">
-                  Productos originales con garantía. Atención personalizada.
+                  Materiales de primera calidad con protección garantizada.
                 </p>
               </CardContent>
             </Card>
@@ -116,9 +129,9 @@ export default function Home() {
                 <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
                   <Headphones className="h-8 w-8 text-purple-600" />
                 </div>
-                <h3 className="text-xl font-semibold">Soporte 24/7</h3>
+                <h3 className="text-xl font-semibold">Asesoramiento</h3>
                 <p className="text-muted-foreground">
-                  Atención inmediata por WhatsApp. Resolvemos todas tus dudas.
+                  Te ayudamos a elegir la funda perfecta para tu iPhone.
                 </p>
               </CardContent>
             </Card>
@@ -131,12 +144,12 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-3xl font-bold mb-2">Productos Destacados</h2>
-              <p className="text-muted-foreground">Los más elegidos por nuestros clientes</p>
+              <h2 className="text-3xl font-bold mb-2">Fundas Destacadas</h2>
+              <p className="text-muted-foreground">Las más elegidas por nuestros clientes</p>
             </div>
             <Button variant="outline" asChild>
-              <Link href="#todos-productos">
-                Ver Todos
+              <Link href="#todas-las-fundas">
+                Ver Todas
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -144,7 +157,6 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredLoading ? (
-              // Mostrar 4 skeletons mientras carga
               Array.from({ length: 4 }).map((_, index) => (
                 <ProductSkeleton key={index} />
               ))
@@ -166,16 +178,15 @@ export default function Home() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Más Vendidos</h2>
+            <h2 className="text-3xl font-bold mb-4">Más Vendidas</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Los productos que más confían nuestros clientes. 
-              Calidad garantizada y entrega inmediata.
+              Las fundas que más confían nuestros clientes. 
+              Diseños únicos y protección garantizada.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {featuredLoading ? (
-              // Mostrar 3 skeletons mientras carga
               Array.from({ length: 3 }).map((_, index) => (
                 <ProductSkeleton key={index} />
               ))
@@ -188,7 +199,7 @@ export default function Home() {
                       index === 1 ? 'bg-gray-400' : 'bg-orange-500'
                     }`}
                   >
-                    #{index + 1} Más Vendido
+                    #{index + 1} Más Vendida
                   </Badge>
                   <ProductCard product={product} />
                 </div>
@@ -198,37 +209,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            ¿Necesitas Ayuda para Elegir?
-          </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Nuestro equipo te asesora por WhatsApp para encontrar 
-            el producto perfecto para vos.
-          </p>
-          <Button 
-            size="lg" 
-            className="bg-green-500 hover:bg-green-600 text-white"
-            onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Necesito ayuda para elegir un producto 😊', '_blank')}
-          >
-            Consultar por WhatsApp
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+      {/* Models Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Compatibles con todos los iPhone</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Desde iPhone 11 hasta iPhone 16 Pro Max. Encontrá la funda perfecta para tu modelo.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16'].map((model) => (
+              <Card key={model} className="text-center p-4 hover:shadow-md transition-shadow cursor-pointer"
+                    onClick={() => setSelectedCategory(model)}>
+                <CardContent className="p-0">
+                  <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <Smartphone className="h-6 w-6 text-gray-600" />
+                  </div>
+                  <p className="text-sm font-medium">{model}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* All Products Section */}
-      <section id="todos-productos" className="py-16">
+      <section id="todas-las-fundas" className="py-16">
         <div className="container mx-auto px-4">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">Todos los Productos</h2>
+            <h2 className="text-3xl font-bold mb-4">Todas las Fundas</h2>
             <p className="text-muted-foreground mb-6">
-              Explorá nuestro catálogo completo y encontrá lo que buscás
+              Explorá nuestro catálogo completo y encontrá la funda perfecta para tu iPhone
             </p>
             
-            <div className="flex flex-col lg:flex-row gap-4 mb-6">
+            <div className="flex flex-col lg:flex-row gap-6 mb-6">
               <div className="flex-1 max-w-md">
                 <SearchBar onSearch={setSearchQuery} />
               </div>
@@ -242,16 +258,18 @@ export default function Home() {
           </div>
 
           {isLoading ? (
-            // Mostrar grid de skeletons mientras carga
             <ProductGridSkeleton count={8} />
           ) : filteredProducts.length === 0 ? (
             <div className="text-center py-12">
               <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-12 w-12 text-gray-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">No se encontraron productos</h3>
+              <h3 className="text-lg font-semibold mb-2">No encontramos fundas</h3>
               <p className="text-muted-foreground mb-4">
-                Intenta con una búsqueda diferente o cambia la categoría
+                {selectedCategory !== 'Todos' 
+                  ? `No tenemos fundas disponibles para ${selectedCategory}` 
+                  : 'Intenta con una búsqueda diferente'
+                }
               </p>
               <Button 
                 variant="outline" 
@@ -260,16 +278,16 @@ export default function Home() {
                   setSelectedCategory('Todos');
                 }}
               >
-                Limpiar Filtros
+                Ver Todas las Fundas
               </Button>
             </div>
           ) : (
             <>
               <div className="flex items-center justify-between mb-6">
                 <p className="text-muted-foreground">
-                  Mostrando {filteredProducts.length} producto{filteredProducts.length !== 1 ? 's' : ''}
-                  {selectedCategory !== 'Todos' && ` en ${selectedCategory}`}
-                  {searchQuery && ` para "${searchQuery}"`}
+                  Mostrando {filteredProducts.length} funda{filteredProducts.length !== 1 ? 's' : ''}
+                  {selectedCategory !== 'Todos' && ` para ${selectedCategory}`}
+                  {searchQuery && ` con "${searchQuery}"`}
                 </p>
               </div>
               
