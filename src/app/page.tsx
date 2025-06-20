@@ -56,28 +56,35 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section Mejorado */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white py-24 overflow-hidden">
+      <section className="relative text-white py-24 overflow-hidden">
         {/* Efectos de fondo */}
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl"></div>
+        <img
+    src="/asd.jfif"
+    alt="fondo"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+        <div className="absolute inset-0 bg-black/50"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
-                <Smartphone className="h-12 w-12 text-white" />
-              </div>
+              <div className="w-36 h-36 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
+  <img 
+    src="/sorella_logo_secundario_Mesa_de_trabajo_1.png" 
+    alt="Sorella" 
+    className="w-32 h-32 object-contain"
+  />
+</div>
               <div className="absolute -top-2 -right-2">
                 <Sparkles className="h-6 w-6 text-yellow-300 animate-pulse" />
               </div>
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+          <h1 className="text-6xl md:text-7xl font-bold mb-6 text-white">
             Fundas Premium
           </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-blue-100">
+          <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-red-100">
             para tu iPhone
           </h2>
           
@@ -87,11 +94,17 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105">
-              <Sparkles className="mr-2 h-5 w-5" />
-              Ver Fundas
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="#todas-las-fundas">
+          <Button
+            size="lg"
+            className="bg-white hover:bg-red-50 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
+            style={{ color: '#9d1d25' }}
+          >
+            <Sparkles className="mr-2 h-5 w-5" />
+            Ver Fundas
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
             <Button 
               size="lg" 
               variant="outline" 
@@ -172,7 +185,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Mejorado */}
-      <section className="py-20 bg-white">
+      <section id="destacados" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <div>

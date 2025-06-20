@@ -24,9 +24,8 @@ export default function Footer() {
 
   const quickLinks = [
     { name: 'Inicio', href: '/' },
-    { name: 'Productos', href: '#todos-productos' },
+    { name: 'Productos', href: '#todas-las-fundas' },
     { name: 'Destacados', href: '#destacados' },
-    { name: 'Ofertas', href: '#ofertas' },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -41,9 +40,13 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-red-800 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">SS</span>
-              </div>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center">
+  <img 
+    src="/sorella_logo_principal_c-fondo.png" 
+    alt="Sorella Store" 
+    className="w-full h-full object-contain"
+  />
+</div>
               <span className="font-bold text-xl">Sorella Store</span>
             </div>
             
@@ -55,22 +58,22 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-sm">
-                <Phone className="h-4 w-4 text-red-400" />
+                <Phone className="h-4 w-4 text-[#bf3a46]" />
                 <span>+54 381 419-9442</span>
               </div>
               
               <div className="flex items-center space-x-3 text-sm">
-                <Mail className="h-4 w-4 text-red-400" />
+                <Mail className="h-4 w-4 text-[#bf3a46]" />
                 <span>info@miecommerce.com</span>
               </div>
               
               <div className="flex items-center space-x-3 text-sm">
-                <MapPin className="h-4 w-4 text-red-400" />
+                <MapPin className="h-4 w-4 text-[#bf3a46]" />
                 <span>San Miguel de Tucumán, Argentina</span>
               </div>
 
               <div className="flex items-center space-x-3 text-sm">
-                <Clock className="h-4 w-4 text-red-400" />
+                <Clock className="h-4 w-4 text-[#bf3a46]" />
                 <span>Lun - Sáb: 9:00 - 20:00hs</span>
               </div>
             </div>
@@ -116,24 +119,19 @@ export default function Footer() {
             <h4 className="font-semibold text-lg mb-4 mt-6">Información</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Cómo Comprar
-                </Link>
+                <Link href="/informacion#como-comprar" className="text-gray-300 hover:text-white transition-colors text-sm">
+  Cómo Comprar
+</Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Envíos y Entregas
-                </Link>
+                <Link href="/informacion#envios" className="text-gray-300 hover:text-white transition-colors text-sm">
+  Envíos y Entregas
+</Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Garantías
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white transition-colors text-sm">
-                  Preguntas Frecuentes
-                </Link>
+                <Link href="/informacion#preguntas" className="text-gray-300 hover:text-white transition-colors text-sm">
+  Preguntas Frecuentes
+</Link>
               </li>
             </ul>
           </div>

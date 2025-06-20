@@ -1,9 +1,10 @@
 'use client';
 
-import { ShoppingCart, Menu, Phone, Mail, MapPin, Home, Package, Star, MessageCircle} from 'lucide-react';
+import { ShoppingCart, Menu, Phone, Mail, MapPin, Home, Package, Star, ChevronDown, Info, CreditCard, Truck, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
 import { useCartStore } from '@/lib/store';
 import Cart from './Cart';
@@ -26,7 +27,28 @@ export default function Header() {
     { name: 'Inicio', href: '/', icon: Home, description: 'Página principal' },
     { name: 'Productos', href: '#todas-las-fundas', icon: Package, description: 'Ver todas las fundas' },
     { name: 'Destacados', href: '#destacados', icon: Star, description: 'Fundas más populares' },
-    { name: 'Contacto', href: '#contacto', icon: MessageCircle, description: 'Habla con nosotros' },
+  ];
+
+  // ✅ Actualizado para ir a secciones específicas en /informacion
+  const infoItems = [
+    { 
+      name: 'Cómo Comprar', 
+      href: '/informacion#como-comprar', // ✅ Cambiado
+      icon: CreditCard, 
+      description: 'Proceso de compra paso a paso'
+    },
+    { 
+      name: 'Envíos y Entregas', 
+      href: '/informacion#envios', // ✅ Cambiado
+      icon: Truck, 
+      description: 'Información sobre entregas'
+    },
+    { 
+      name: 'Preguntas Frecuentes', 
+      href: '/informacion#preguntas', // ✅ Cambiado
+      icon: HelpCircle, 
+      description: 'Dudas más comunes'
+    },
   ];
 
   const handleWhatsAppContact = () => {
@@ -48,6 +70,7 @@ export default function Header() {
         }
       }, 100);
     }
+    // Para rutas normales, Next.js se encarga automáticamente
   };
 
   return (
@@ -81,15 +104,19 @@ export default function Header() {
             {/* Logo mejorado */}
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-                  <span className="text-white font-bold text-sm">SS</span>
-                </div>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+  <img 
+    src="/sorella_logo_principal_Mesa_de_trabajo_1.png" 
+    alt="Sorella Store" 
+    className="w-full h-full object-contain"
+  />
+</div>
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
               </div>
               <div className="hidden sm:block">
-                <span className="font-bold text-xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Sorella Store
-                </span>
+                <span className="font-bold text-xl" style={{ color: '#9d1d25' }}>
+  Sorella Store
+</span>
                 <div className="text-xs text-gray-500 -mt-1">Fundas Premium</div>
               </div>
             </Link>
@@ -106,6 +133,42 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Información - Link directo y Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Link
+                    href="/informacion" // ✅ Click directo va a /informacion
+                    className="flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:text-blue-600 hover:scale-105 group"
+                  >
+                    <Info className="h-4 w-4 group-hover:text-blue-600 transition-colors" />
+                    Información
+                    <ChevronDown className="h-3 w-3 group-hover:text-blue-600 transition-colors" />
+                  </Link>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64 p-2">
+                  <div className="px-2 py-1 text-sm font-semibold text-gray-900 mb-2">
+                    Información útil
+                  </div>
+                  <DropdownMenuSeparator />
+                  {infoItems.map((item) => (
+                    <DropdownMenuItem key={item.name} asChild>
+                      <Link
+                        href={item.href} // ✅ Cada item va a su sección específica
+                        className="flex items-start gap-3 p-3 cursor-pointer hover:bg-blue-50 rounded-lg transition-colors w-full"
+                      >
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <item.icon className="h-4 w-4 text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-medium text-gray-900">{item.name}</div>
+                          <div className="text-xs text-gray-500">{item.description}</div>
+                        </div>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </nav>
 
             {/* Right side */}
@@ -165,13 +228,17 @@ export default function Header() {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[320px] p-0">
                   {/* Header del menú */}
-                  <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-6 text-white">
+                  <div className="bg-gradient-to-br from-[#9d1d25] to-[#bf3a46] p-6 text-white">
                     <SheetHeader>
                       <SheetTitle className="text-left text-white">
                         <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                            <span className="text-white font-bold">SS</span>
-                          </div>
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center backdrop-blur-sm bg-white/20">
+  <img 
+    src="/sorella_logo_principal_c-fondo.png" 
+    alt="Sorella Store" 
+    className="w-10 h-10 object-contain"
+  />
+</div>
                           <div>
                             <div className="font-bold text-xl">Sorella Store</div>
                             <div className="text-blue-100 text-sm font-normal">Fundas Premium para iPhone</div>
@@ -181,8 +248,9 @@ export default function Header() {
                     </SheetHeader>
                   </div>
 
-                  {/* Navegación */}
+                  {/* Navegación principal */}
                   <div className="flex flex-col p-6 space-y-2">
+                    <div className="text-sm font-semibold text-gray-900 mb-3">Navegación</div>
                     {navigation.map((item) => (
                       <Link
                         key={item.name}
@@ -199,13 +267,28 @@ export default function Header() {
                         </div>
                       </Link>
                     ))}
+
+                    {/* Información en móvil - Link directo */}
+                    <Link
+                      href="/informacion"
+                      className="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-300 group"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
+                        <Info className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900">Información</div>
+                        <div className="text-sm text-gray-500">Cómo comprar, envíos, garantías</div>
+                      </div>
+                    </Link>
                   </div>
 
                   <Separator className="mx-6" />
 
                   {/* Información de contacto para móviles */}
                   <div className="p-6 space-y-4">
-                    <div className="text-sm font-semibold text-gray-900 mb-3">Información de contacto</div>
+                    <div className="text-sm font-semibold text-gray-900 mb-3">Contacto</div>
                     
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3 text-sm text-gray-600">
