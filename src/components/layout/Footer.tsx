@@ -61,12 +61,12 @@ export default function Footer() {
                 <Phone className="h-4 w-4 text-[#bf3a46]" />
                 <span>+54 381 419-9442</span>
               </div>
-              
+              {/* 
               <div className="flex items-center space-x-3 text-sm">
                 <Mail className="h-4 w-4 text-[#bf3a46]" />
                 <span>info@miecommerce.com</span>
               </div>
-              
+              */}
               <div className="flex items-center space-x-3 text-sm">
                 <MapPin className="h-4 w-4 text-[#bf3a46]" />
                 <span>San Miguel de Tucumán, Argentina</span>
