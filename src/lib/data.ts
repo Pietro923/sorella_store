@@ -6,7 +6,7 @@ export const products: Product[] = [
     name: 'SMOKY CASE GREEN',
     description: 'Funda exclusiva en verde, diseño disruptivo con bordes reforzados. Material: TPU rígido.',
     price: 8900,
-    image: 'smoky-case-green', // El Public ID que asignaste en Cloudinary
+    image: 'smoky-case-green-2', // El Public ID que asignaste en Cloudinary
     category: 'Fundas',
     stock: 3,
     model: ['iPhone 11', 'iPhone 13', 'iPhone 16']
@@ -16,7 +16,7 @@ export const products: Product[] = [
     name: 'SMOKY CASE GRAY',
     description: 'Funda gris minimalista con actitud. Material: TPU rígido con protección reforzada.',
     price: 8900,
-    image: 'smoky-case-gray', // El Public ID que asignaste en Cloudinary
+    image: 'smoky-case-gray-2', // El Public ID que asignaste en Cloudinary
     category: 'Fundas',
     stock: 5,
     model: ['iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16 Pro Max']
