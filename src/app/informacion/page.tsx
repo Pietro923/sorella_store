@@ -1,9 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { ArrowRight, ShoppingCart, MessageCircle, CreditCard, CheckCircle, Clock, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 
@@ -142,7 +141,7 @@ export default function ComoComprarPage() {
             </h2>
 
             <div className="space-y-8">
-              {steps.map((step, index) => (
+              {steps.map((step) => (
                 <Card key={step.number} className="overflow-hidden hover:shadow-lg transition-shadow">
                   <CardContent className="p-8">
                     <div className="flex flex-col md:flex-row items-start gap-6">
