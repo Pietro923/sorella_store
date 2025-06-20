@@ -21,9 +21,10 @@ export const getCloudinaryUrl = (
     crop = 'fill'
   } = options;
 
-  // URL sin folder - todas las imágenes están en la raíz
+  // URL sin folder y con transformaciones automáticas
   const transformations = `w_${width},h_${height},q_${quality},f_${format},c_${crop}`;
   
+  // Cloudinary automáticamente manejará la versión y extensión
   return `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${transformations}/${publicId}`;
 };
 
@@ -39,7 +40,6 @@ export const getProductImage = (
     hero: { width: 1200, height: 1200 }     // Para imágenes grandes
   };
 
-  // ✅ Todas las imágenes están en la raíz, sin carpeta
   return getCloudinaryUrl(publicId, sizes[size]);
 };
 
