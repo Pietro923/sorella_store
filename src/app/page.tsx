@@ -151,7 +151,7 @@ export default function Home() {
                 <p className="text-gray-600 leading-relaxed">
                   Entrega en 24-48hs en Tucumán. Coordinamos horario por WhatsApp para tu comodidad.
                 </p>
-                <Badge variant="secondary" className="bg-blue-100 text-blue-700">Gratis en Tucumán</Badge>
+                <Badge variant="secondary" className="bg-blue-100 text-blue-700">Gratis en UNT (parque) o UTN</Badge>
               </CardContent>
             </Card>
 
