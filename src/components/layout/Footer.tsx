@@ -3,12 +3,9 @@
 import { Button } from '@/components/ui/button';
 import { 
   Phone, 
-  Mail, 
   MapPin, 
   MessageCircle, 
-  Instagram, 
-  Facebook, 
-  Twitter,
+  Instagram,
   Clock,
   Shield,
   Truck,
