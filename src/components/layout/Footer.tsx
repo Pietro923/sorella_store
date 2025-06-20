@@ -79,16 +79,27 @@ export default function Footer() {
             </div>
 
             {/* Social Media */}
+            
             <div className="flex space-x-3 pt-4">
+              {/* 
               <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-blue-600">
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-pink-600">
-                <Instagram className="h-4 w-4" />
-              </Button>
+              */}
+              <a
+  href="https://www.instagram.com/sorella_sstore/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-pink-600">
+    <Instagram className="h-4 w-4" />
+  </Button>
+</a>
+              {/* 
               <Button size="icon" variant="ghost" className="border-gray-600 hover:bg-blue-400">
                 <Twitter className="h-4 w-4" />
               </Button>
+              */}
               <Button 
                 size="icon" 
                 variant="ghost" 
