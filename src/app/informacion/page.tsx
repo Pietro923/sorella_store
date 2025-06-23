@@ -6,13 +6,6 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, ShoppingCart, MessageCircle, CreditCard, CheckCircle, Clock, MapPin, Phone } from 'lucide-react';
 import Link from 'next/link';
 
-// Metadata se mueve a un archivo separado o se maneja diferente
-// export const metadata = {
-//   title: 'Cómo Comprar - Sorella Store | Proceso de Compra Fácil',
-//   description: 'Aprende cómo comprar fundas para iPhone en Sorella Store. Proceso simple vía WhatsApp con envío rápido a Tucumán.',
-//   keywords: 'como comprar, proceso de compra, whatsapp, fundas iphone, sorella store, tucuman',
-// };
-
 export default function ComoComprarPage() {
   const steps = [
     {
@@ -68,17 +61,15 @@ export default function ComoComprarPage() {
   const paymentMethods = [
     { name: 'Efectivo', description: 'Al momento de la entrega' },
     { name: 'Transferencia', description: 'Bancaria o Mercado Pago' },
-    { name: 'Tarjeta de Débito', description: 'En punto de encuentro' },
-    { name: 'Tarjeta de Crédito', description: 'En punto de encuentro' },
   ];
 
   const deliveryOptions = [
     {
       title: 'Envío a Domicilio',
       icon: MapPin,
-      price: 'Gratis',
+      price: 'El costo depende de Uber',
       time: '24-48hs',
-      description: 'Llevamos tu pedido directo a tu casa en Tucumán capital y alrededores'
+      description: 'Realizamos envios a traves de Uber Paquetes directo a tu casa en Tucumán'
     },
     {
       title: 'Punto de Encuentro',
@@ -90,85 +81,98 @@ export default function ComoComprarPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Breadcrumbs */}
-      <div className="bg-white border-b">
+    <div className="min-h-screen" style={{ backgroundColor: '#efecdd' }}>
+      {/* Breadcrumbs Retro */}
+      <div className="bg-white border-b-4 border-black">
         <div className="container mx-auto px-4 py-4">
-          <nav className="text-sm">
-            <Link href="/" className="text-blue-600 hover:text-blue-800 transition-colors">
-              Inicio
+          <nav className="text-sm font-bold">
+            <Link 
+              href="/" 
+              className="hover:underline transition-colors"
+              style={{ color: '#9d1d25' }}
+            >
+              INICIO
             </Link>
-            <span className="mx-2 text-gray-500">/</span>
-            <span className="text-gray-900 font-medium">Cómo Comprar</span>
+            <span className="mx-2" style={{ color: '#282828' }}>/</span>
+            <span className="font-black" style={{ color: '#282828' }}>CÓMO COMPRAR</span>
           </nav>
         </div>
       </div>
 
-      {/* Hero Section */}
+      {/* Hero Section Retro */}
       <section id="como-comprar" className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              ¿Cómo Comprar en Sorella Store?
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-black mb-6" style={{ color: '#282828' }}>
+              ¿CÓMO COMPRAR EN SORELLA STORE?
             </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            <p className="text-xl font-medium mb-8 leading-relaxed max-w-3xl mx-auto" style={{ color: '#9d1d25' }}>
               Es súper fácil! Solo seguí estos simples pasos y en minutos tendrás tu funda favorita en camino.
             </p>
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-green-600" />
-                <span>Proceso de 5 minutos</span>
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <div className="flex items-center gap-2 px-4 py-2 border-3 border-black shadow-[4px_4px_0px_0px_#282828] bg-white">
+                <Clock className="h-5 w-5" style={{ color: '#9d1d25' }} />
+                <span className="font-bold" style={{ color: '#282828' }}>Proceso de 5 minutos</span>
               </div>
-              <div className="flex items-center gap-2">
-                <MessageCircle className="h-4 w-4 text-blue-600" />
-                <span>Vía WhatsApp</span>
+              <div className="flex items-center gap-2 px-4 py-2 border-3 border-black shadow-[4px_4px_0px_0px_#282828] bg-white">
+                <MessageCircle className="h-5 w-5" style={{ color: '#9d1d25' }} />
+                <span className="font-bold" style={{ color: '#282828' }}>Vía WhatsApp</span>
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-purple-600" />
-                <span>100% Seguro</span>
+              <div className="flex items-center gap-2 px-4 py-2 border-3 border-black shadow-[4px_4px_0px_0px_#282828] bg-white">
+                <CheckCircle className="h-5 w-5" style={{ color: '#9d1d25' }} />
+                <span className="font-bold" style={{ color: '#282828' }}>100% Seguro</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Steps Section */}
+      {/* Steps Section Retro */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-              Proceso Paso a Paso
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>
+              PROCESO PASO A PASO
             </h2>
 
             <div className="space-y-8">
               {steps.map((step) => (
-                <Card key={step.number} className="overflow-hidden hover:shadow-lg transition-shadow">
+                <Card 
+                  key={step.number} 
+                  className="overflow-hidden border-4 border-black shadow-[8px_8px_0px_0px_#282828] hover:shadow-[12px_12px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                >
                   <CardContent className="p-8">
-                    <div className="flex flex-col md:flex-row items-start gap-6">
+                    <div className="flex flex-col md:flex-row items-start gap-8">
                       {/* Step Number & Icon */}
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                      <div className="flex items-center gap-6">
+                        <div 
+                          className="w-20 h-20 rounded-full flex items-center justify-center text-white font-black text-2xl border-4 border-black shadow-lg"
+                          style={{ backgroundColor: '#9d1d25' }}
+                        >
                           {step.number}
                         </div>
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
-                          <step.icon className="h-6 w-6 text-blue-600" />
+                        <div 
+                          className="w-16 h-16 rounded-2xl flex items-center justify-center border-3 border-black shadow-lg"
+                          style={{ backgroundColor: '#efecdd' }}
+                        >
+                          <step.icon className="h-8 w-8" style={{ color: '#9d1d25' }} />
                         </div>
                       </div>
 
                       {/* Content */}
                       <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-3xl font-black mb-3" style={{ color: '#282828' }}>
                           {step.title}
                         </h3>
-                        <p className="text-gray-600 text-lg mb-4">
+                        <p className="text-lg font-medium mb-6" style={{ color: '#9d1d25' }}>
                           {step.description}
                         </p>
                         
-                        <div className="grid md:grid-cols-2 gap-2">
+                        <div className="grid md:grid-cols-2 gap-3">
                           {step.details.map((detail, idx) => (
-                            <div key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                              <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
-                              <span>{detail}</span>
+                            <div key={idx} className="flex items-center gap-3">
+                              <CheckCircle className="h-5 w-5 flex-shrink-0" style={{ color: '#9d1d25' }} />
+                              <span className="font-medium" style={{ color: '#282828' }}>{detail}</span>
                             </div>
                           ))}
                         </div>
@@ -182,66 +186,87 @@ export default function ComoComprarPage() {
         </div>
       </section>
 
-      {/* Payment Methods */}
-      <section className="py-16 bg-gray-50">
+      {/* Payment Methods Retro */}
+      <section className="py-16 ">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-              Métodos de Pago
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>
+              MÉTODOS DE PAGO
             </h2>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
               {paymentMethods.map((method) => (
-                <Card key={method.name} className="text-center p-6 hover:shadow-lg transition-shadow">
-                  <CardContent className="space-y-4">
-                    <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-blue-100 rounded-full flex items-center justify-center mx-auto">
-                      <CreditCard className="h-8 w-8 text-green-600" />
+                <Card 
+                  key={method.name} 
+                  className="text-center p-6 border-4 border-black shadow-[6px_6px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                >
+                  <CardContent className="space-y-4 p-0">
+                    <div 
+                      className="w-16 h-16 rounded-full flex items-center justify-center mx-auto border-3 border-black shadow-lg"
+                      style={{ backgroundColor: '#9d1d25' }}
+                    >
+                      <CreditCard className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="font-bold text-gray-900">{method.name}</h3>
-                    <p className="text-sm text-gray-600">{method.description}</p>
+                    <h3 className="font-black text-lg" style={{ color: '#282828' }}>{method.name}</h3>
+                    <p className="text-sm font-medium" style={{ color: '#9d1d25' }}>{method.description}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <div className="text-center mt-8">
-              <Badge variant="secondary" className="text-sm px-4 py-2">
-                💡 Coordinamos el método de pago vía WhatsApp
+            <div className="text-center mt-12">
+              <Badge 
+                className="text-base px-6 py-3 font-bold border-3 border-black shadow-[4px_4px_0px_0px_#282828]"
+                style={{ backgroundColor: '#be3a47', color: 'white' }}
+              >
+                Coordinamos el método de pago vía WhatsApp
               </Badge>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Delivery Options */}
-      <section id="envios" className="py-16">
+      {/* Delivery Options Retro */}
+      <section id="envios" className="py-16" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-              Opciones de Entrega
+          <div className="max-w-5xl mx-auto">
+            <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>
+              OPCIONES DE ENTREGA
             </h2>
             
             <div className="grid md:grid-cols-2 gap-8">
               {deliveryOptions.map((option) => (
-                <Card key={option.title} className="p-8 hover:shadow-lg transition-shadow">
-                  <CardContent className="space-y-6">
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
-                        <option.icon className="h-8 w-8 text-blue-600" />
+                <Card 
+                  key={option.title} 
+                  className="p-8 border-4 border-black shadow-[8px_8px_0px_0px_#282828] hover:shadow-[12px_12px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                >
+                  <CardContent className="space-y-6 p-0">
+                    <div className="flex items-center gap-6">
+                      <div 
+                        className="w-20 h-20 rounded-2xl flex items-center justify-center border-3 border-black shadow-lg"
+                        style={{ backgroundColor: '#efecdd' }}
+                      >
+                        <option.icon className="h-10 w-10" style={{ color: '#9d1d25' }} />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900">{option.title}</h3>
-                        <div className="flex items-center gap-4 mt-2">
-                          <Badge variant="secondary" className="bg-green-100 text-green-700">
+                        <h3 className="text-2xl font-black" style={{ color: '#282828' }}>{option.title}</h3>
+                        <div className="flex items-center gap-4 mt-3">
+                          <Badge 
+                            className="font-bold border-2 border-black shadow-sm"
+                            style={{ backgroundColor: '#9d1d25', color: 'white' }}
+                          >
                             {option.price}
                           </Badge>
-                          <Badge variant="outline">
+                          <Badge 
+                            className="font-bold border-2 border-black shadow-sm bg-white"
+                            style={{ color: '#282828' }}
+                          >
                             {option.time}
                           </Badge>
                         </div>
                       </div>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="leading-relaxed font-medium text-lg" style={{ color: '#9d1d25' }}>
                       {option.description}
                     </p>
                   </CardContent>
@@ -252,142 +277,127 @@ export default function ComoComprarPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      {/* CTA Section Retro */}
+      <section className="py-20" style={{ background: 'linear-gradient(135deg, #9d1d25 0%, #be3a47 100%)' }}>
         <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              ¿Listo para comprar tu funda ideal?
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
+              ¿LISTO PARA COMPRAR TU FUNDA IDEAL?
             </h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Todo el proceso toma menos de 5 minutos. ¡Empezá ahora y protegé tu iPhone con estilo!
+            <p className="text-xl mb-10 leading-relaxed font-medium" style={{ color: '#efecdd' }}>
+              Todo el proceso toma menos de 5 minutos. Empezá ahora y protegé tu iPhone con estilo!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
-                <Link href="/">
-                  <ShoppingCart className="mr-2 h-5 w-5" />
-                  Ver Fundas
-                  <ArrowRight className="ml-2 h-5 w-5" />
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button 
+                asChild 
+                size="lg" 
+                className="font-black border-4 border-white shadow-[6px_6px_0px_0px_white] hover:shadow-[8px_8px_0px_0px_white] transition-all"
+                style={{ backgroundColor: 'white', color: '#9d1d25' }}
+              >
+                <Link href="/" className="flex items-center gap-3">
+                  <ShoppingCart className="h-6 w-6" />
+                  VER FUNDAS
+                  <ArrowRight className="h-6 w-6" />
                 </Link>
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-blue-600"
-                onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Tengo dudas sobre cómo comprar 😊', '_blank')}
+                className="font-black border-4 border-white bg-transparent text-white hover:bg-white/10 shadow-[6px_6px_0px_0px_white] hover:shadow-[8px_8px_0px_0px_white] transition-all"
+                onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Tengo dudas sobre cómo comprar', '_blank')}
               >
-                <Phone className="mr-2 h-5 w-5" />
-                Consultar por WhatsApp
+                <Phone className="mr-3 h-6 w-6" />
+                CONSULTAR POR WHATSAPP
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="preguntas" className="py-16 bg-gray-50">
+      {/* FAQ Section Retro */}
+      <section id="preguntas" className="py-16 ">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-              Preguntas Frecuentes
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>
+              PREGUNTAS FRECUENTES
             </h2>
             
             <div className="space-y-6">
-              <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2">¿Es seguro comprar por WhatsApp?</h3>
-                <p className="text-gray-600">
-                  ¡Absolutamente! WhatsApp nos permite tener comunicación directa y personalizada. 
-                  Podés ver nuestro perfil, verificar que somos un negocio real y hacer todas las preguntas que necesites.
-                </p>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2">¿Cuánto tiempo tarda en llegar mi pedido?</h3>
-                <p className="text-gray-600">
-                  En Tucumán capital y alrededores: 24-48 horas. Para puntos de encuentro podemos coordinar el mismo día. 
-                  Te confirmamos el tiempo exacto cuando hagas tu pedido.
-                </p>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2">¿Puedo cambiar mi pedido después de enviarlo?</h3>
-                <p className="text-gray-600">
-                  Sí, mientras no hayamos preparado tu pedido para envío. Contactanos inmediatamente por WhatsApp y 
-                  coordinamos cualquier cambio que necesites.
-                </p>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="font-bold text-gray-900 mb-2">¿Qué pasa si la funda no me gusta?</h3>
-                <p className="text-gray-600">
-                  Tenés 7 días para devolverla en perfecto estado. Te devolvemos el 100% de tu dinero. 
-                  Consultá nuestra <Link href="/garantias" className="text-blue-600 hover:underline">política de garantías</Link> para más detalles.
-                </p>
-              </Card>
+              {[
+                {
+                  question: '¿Es seguro comprar por WhatsApp?',
+                  answer: 'Absolutamente! WhatsApp nos permite tener comunicación directa y personalizada. Podés ver nuestro perfil, verificar que somos un negocio real y hacer todas las preguntas que necesites.'
+                },
+                {
+                  question: '¿Cuánto tiempo tarda en llegar mi pedido?',
+                  answer: 'En Tucumán capital y alrededores: 24-48 horas. Para puntos de encuentro podemos coordinar el mismo día. Te confirmamos el tiempo exacto cuando hagas tu pedido.'
+                },
+                {
+                  question: '¿Puedo cambiar mi pedido después de enviarlo?',
+                  answer: 'Sí, mientras no hayamos preparado tu pedido para envío. Contactanos inmediatamente por WhatsApp y coordinamos cualquier cambio que necesites.'
+                },
+              ].map((faq, index) => (
+                <Card 
+                  key={index}
+                  className="p-6 border-4 border-black shadow-[6px_6px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                  
+                >
+                  <h3 className="font-black text-xl mb-3 text-center" style={{ color: '#282828' }}>{faq.question}</h3>
+                  <p className=" leading-relaxed font-bold text-center" style={{ color: '#9d1d25' }}>
+                    {faq.answer}
+                  </p>
+                </Card>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16">
+      {/* Contact Section Retro */}
+      <section className="py-16" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6 text-gray-900">
-              ¿Tenés más dudas?
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-black mb-6" style={{ color: '#282828' }}>
+              ¿TENÉS MÁS DUDAS?
             </h2>
-            <p className="text-gray-600 mb-8 text-lg">
+            <p className="text-lg font-medium mb-12" style={{ color: '#9d1d25' }}>
               Estamos para ayudarte. Contactanos por cualquiera de estos medios:
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6">
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto">
-                    <Phone className="h-6 w-6 text-green-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">WhatsApp</h3>
-                    <p className="text-sm text-gray-600">+54 381 661-8632</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto">
-                    <Phone className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">Teléfono</h3>
-                    <p className="text-sm text-gray-600">+54 381 661-8632</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <CardContent className="text-center space-y-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto">
-                    <MessageCircle className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900">Email</h3>
-                    <p className="text-sm text-gray-600">jpbonacossa@gmail.com</p>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                { icon: Phone, title: 'WhatsApp', info: '+54 381 661-8632', color: '#9d1d25' },
+                { icon: Phone, title: 'Teléfono', info: '+54 381 661-8632', color: '#be3a47' },
+                { icon: MessageCircle, title: 'Email', info: 'jpbonacossa@gmail.com', color: '#282828' }
+              ].map((contact, index) => (
+                <Card 
+                  key={index}
+                  className="p-6 border-4 border-black shadow-[6px_6px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                >
+                  <CardContent className="text-center space-y-4 p-0">
+                    <div 
+                      className="w-16 h-16 rounded-lg flex items-center justify-center mx-auto border-3 border-black shadow-lg"
+                      style={{ backgroundColor: contact.color }}
+                    >
+                      <contact.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-lg" style={{ color: '#282828' }}>{contact.title}</h3>
+                      <p className="text-sm font-medium" style={{ color: '#9d1d25' }}>{contact.info}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
 
-            <div className="mt-8">
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
-                onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Tengo una consulta sobre el proceso de compra 😊', '_blank')}
-              >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Chatear Ahora
-              </Button>
-            </div>
+            <Button 
+              size="lg" 
+              className="font-black border-4 border-black shadow-[6px_6px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1"
+              style={{ backgroundColor: '#9d1d25', color: 'white' }}
+              onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Tengo una consulta sobre el proceso de compra', '_blank')}
+            >
+              <MessageCircle className="mr-3 h-6 w-6" />
+              CHATEAR AHORA
+            </Button>
           </div>
         </div>
       </section>

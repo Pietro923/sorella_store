@@ -9,7 +9,7 @@ import ProductSkeleton, { ProductGridSkeleton } from '@/components/ProductSkelet
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Star, Truck, Shield, Smartphone, Sparkles, Award, Heart } from 'lucide-react';
+import { ArrowRight, Star, Truck, Shield, Smartphone, Sparkles, Award, Heart, Zap, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -18,16 +18,13 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [featuredLoading, setFeaturedLoading] = useState(true);
 
-  // Simular carga de datos
   useEffect(() => {
     const featuredTimer = setTimeout(() => {
       setFeaturedLoading(false);
     }, 1000);
-
     const allProductsTimer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
-
     return () => {
       clearTimeout(featuredTimer);
       clearTimeout(allProductsTimer);
@@ -47,247 +44,142 @@ export default function Home() {
     });
   }, [selectedCategory, searchQuery, isLoading]);
 
-  // Productos destacados (los primeros 4)
   const featuredProducts = featuredLoading ? [] : products.slice(0, 4);
-  
-  // Productos más vendidos (simulado - por stock)
   const bestSellers = featuredLoading ? [] : products.sort((a, b) => b.stock - a.stock).slice(0, 3);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section Mejorado */}
-      <section className="relative text-white py-24 overflow-hidden">
+    <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: '#efecdd' }}>
+      {/* Hero Section Retro */}
+      <section className="relative overflow-hidden min-h-screen py-16 sm:py-24" style={{ background: 'linear-gradient(135deg, #9d1d25 0%, #be3a47 100%)' }}>
         {/* Efectos de fondo */}
         <img
-    src="/asd.jfif"
-    alt="fondo"
-    className="absolute inset-0 w-full h-full object-cover"
-  />
-        <div className="absolute inset-0 bg-black/50"></div>
+          src="/fondo2.png"
+          alt="fondo"
+          className="absolute inset-0 w-full h-full object-cover "
+        />
         
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 sm:mb-8">
             <div className="relative">
-              <div className="w-36 h-36 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/30">
-  <img 
-    src="/sorella_logo_secundario_Mesa_de_trabajo_1.png" 
-    alt="Sorella" 
-    className="w-32 h-32 object-contain"
-  />
-</div>
-              <div className="absolute -top-2 -right-2">
-                <Sparkles className="h-6 w-6 text-yellow-300 animate-pulse" />
+              <div 
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-3xl flex items-center justify-center border-4 border-black shadow-2xl"
+                style={{ backgroundColor: '#efecdd' }}
+              >
+                <img 
+                  src="/sorella_logo_secundario_Mesa_de_trabajo_1.png" 
+                  alt="Sorella" 
+                  className="w-24 h-24 sm:w-32 sm:h-32 object-contain"
+                />
               </div>
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 text-white">
-            Fundas Premium
-          </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-red-100">
-            para tu iPhone
-          </h2>
+          <div className="mb-6">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl font-black mb-4 text-black tracking-tight">
+              FUNDAS
+            </h1>
+            <div className="relative inline-block">
+              <h2 
+                className="text-2xl sm:text-4xl md:text-5xl font-bold px-4 sm:px-8 py-2 sm:py-3 rounded-full border-4 border-black shadow-xl"
+                style={{ backgroundColor: '#efecdd', color: '#9d1d25' }}
+              >
+                PREMIUM
+              </h2>
+            </div>
+          </div>
           
-          <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed text-blue-50">
-            Protección y estilo únicos. Diseños exclusivos para todos los modelos de iPhone. 
-            <span className="font-semibold text-yellow-300"> Calidad garantizada</span> y envío inmediato.
+          <p className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed text-black font-medium px-2">
+            Protección y estilo únicos para tu iPhone
+            <br />
+            <span className=" font-bold text-black">¡Diseños que hacen la diferencia!</span>
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link href="#todas-las-fundas">
-          <Button
-            size="lg"
-            className="bg-white hover:bg-red-50 shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-            style={{ color: '#9d1d25' }}
-          >
-            <Sparkles className="mr-2 h-5 w-5" />
-            Ver Fundas
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </Link>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-12 px-4">
+            <Link href="#todas-las-fundas" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 hover:-rotate-1"
+                style={{ backgroundColor: '#efecdd', color: '#9d1d25' }}
+              >
+                <Zap className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                VER FUNDAS
+                <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6" />
+              </Button>
+            </Link>
             <Button 
               size="lg" 
-              variant="outline" 
-              className="border-2 border-white text-green-600 hover:bg-green-50 shadow-2xl hover:shadow-3xl hover:text-green-500 backdrop-blur-sm transition-all duration-300 hover:scale-105"
+              className="bg-white text-black w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black   hover:bg-white/10 shadow-2xl transition-all duration-300 transform hover:scale-105 hover:rotate-1"
               onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Quiero consultar sobre las fundas para iPhone 😊', '_blank')}
             >
-              💬 Consultar por WhatsApp
+              <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+              CONSULTAR
             </Button>
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-md mx-auto">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-300">100+</div>
-              <div className="text-sm text-blue-100">Diseños únicos</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-300">24h</div>
-              <div className="text-sm text-blue-100">Envío rápido</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-yellow-300">5⭐</div>
-              <div className="text-sm text-blue-100">Calificación</div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* Features Section Mejorado */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      {/* Features Section Retro */}
+      <section className="py-16 sm:py-20" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-gray-900">¿Por qué elegirnos?</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Somos especialistas en protección premium para tu iPhone</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
-              <CardContent className="space-y-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                  <Truck className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Envío Express</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Entrega en 24-48hs en Tucumán. Coordinamos horario por WhatsApp para tu comodidad.
-                </p>
-                <Badge variant="secondary" className="bg-blue-100 text-blue-700">Gratis en UNT (parque) o UTN</Badge>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-green-50 to-green-100">
-              <CardContent className="space-y-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                  <Shield className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Calidad Premium</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Materiales TPU rígido de primera calidad. Protección garantizada contra caídas y rayones.
-                </p>
-                <Badge variant="secondary" className="bg-green-100 text-green-700">Garantía incluida</Badge>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-gradient-to-br from-purple-50 to-purple-100">
-              <CardContent className="space-y-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                  <Heart className="h-10 w-10 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">Atención Personal</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Te ayudamos a elegir la funda perfecta. Asesoramiento especializado vía WhatsApp.
-                </p>
-                <Badge variant="secondary" className="bg-purple-100 text-purple-700">24/7 disponible</Badge>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products Mejorado */}
-      <section id="destacados" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center">
-                  <Sparkles className="h-6 w-6 text-white" />
-                </div>
-                <h2 className="text-4xl font-bold text-gray-900">Fundas Destacadas</h2>
-              </div>
-              <p className="text-xl text-gray-600">Las más elegidas por nuestros clientes</p>
-            </div>
-            <Button variant="outline" asChild className="hidden md:flex">
-              <Link href="#todas-las-fundas">
-                Ver Todas
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredLoading ? (
-              Array.from({ length: 4 }).map((_, index) => (
-                <ProductSkeleton key={index} />
-              ))
-            ) : (
-              featuredProducts.map((product) => (
-                <div key={product.id} className="relative group">
-                  <Badge className="absolute top-4 left-4 z-10 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 shadow-lg">
-                    ⭐ Destacado
-                  </Badge>
-                  <ProductCard product={product} />
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Best Sellers Mejorado */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center">
-                <Award className="h-8 w-8 text-white" />
-              </div>
-              <h2 className="text-4xl font-bold text-gray-900">Top Ventas</h2>
-            </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Las fundas que más confían nuestros clientes. 
-              <span className="font-semibold text-purple-600"> Diseños únicos</span> y protección garantizada.
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 
+              className="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 px-2"
+              style={{ color: '#282828' }}
+            >
+              ¿POR QUÉ SOMOS LOS MEJORES?
+            </h2>
+            <p className="text-lg sm:text-xl font-medium max-w-2xl mx-auto px-4" style={{ color: '#9d1d25' }}>
+              Especialistas en protección premium para tu iPhone desde 2020
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredLoading ? (
-              Array.from({ length: 3 }).map((_, index) => (
-                <ProductSkeleton key={index} />
-              ))
-            ) : (
-              bestSellers.map((product, index) => (
-                <div key={product.id} className="relative group">
-                  <Badge 
-                    className={`absolute top-4 left-4 z-10 shadow-lg ${
-                      index === 0 ? 'bg-gradient-to-r from-yellow-400 to-yellow-500' : 
-                      index === 1 ? 'bg-gradient-to-r from-gray-400 to-gray-500' : 
-                      'bg-gradient-to-r from-orange-400 to-orange-500'
-                    }`}
-                  >
-                    {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'} #{index + 1} Más Vendida
-                  </Badge>
-                  <ProductCard product={product} />
-                </div>
-              ))
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Models Section Mejorado */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 text-gray-900">Compatibles con todos los iPhone</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Desde iPhone 11 hasta iPhone 16 Pro Max. Encontrá la funda perfecta para tu modelo.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16'].map((model) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                icon: Truck,
+                title: 'Envío Express',
+                description: 'Entrega en 24-48hs en Tucumán. Coordinamos horario por WhatsApp para tu comodidad.',
+                badge: 'Gratis en UNT/UTN',
+                color: '#9d1d25'
+              },
+              {
+                icon: Shield,
+                title: 'Calidad Premium',
+                description: 'Materiales TPU rígido de primera calidad. Protección garantizada contra caídas y rayones.',
+                badge: 'Garantía incluida',
+                color: '#be3a47'
+              },
+              {
+                icon: Heart,
+                title: 'Atención Personal',
+                description: 'Te ayudamos a elegir la funda perfecta. Asesoramiento especializado vía WhatsApp.',
+                badge: '24/7 disponible',
+                color: '#282828'
+              }
+            ].map((feature, idx) => (
               <Card 
-                key={model} 
-                className="text-center p-6 hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:bg-gradient-to-br hover:from-blue-50 hover:to-purple-50 border-2 hover:border-blue-200"
-                onClick={() => setSelectedCategory(model)}
+                key={idx}
+                className="p-6 sm:p-8 border-4 border-black shadow-[6px_6px_0px_0px_#282828] sm:shadow-[8px_8px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] sm:hover:shadow-[12px_12px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 hover:-translate-x-1 bg-white"
               >
-                <CardContent className="p-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:from-blue-100 group-hover:to-purple-100 transition-all duration-300">
-                    <Smartphone className="h-8 w-8 text-gray-600" />
+                <CardContent className="space-y-4 sm:space-y-6 p-0 text-center">
+                  <div 
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center mx-auto border-3 border-black shadow-lg"
+                    style={{ backgroundColor: feature.color }}
+                  >
+                    <feature.icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   </div>
-                  <p className="font-semibold text-gray-900">{model}</p>
-                  <p className="text-xs text-gray-500 mt-1">Ver fundas</p>
+                  <h3 className="text-xl sm:text-2xl font-black" style={{ color: '#282828' }}>
+                    {feature.title}
+                  </h3>
+                  <p className="leading-relaxed font-medium text-sm sm:text-base" style={{ color: '#282828' }}>
+                    {feature.description}
+                  </p>
+                  <Badge 
+                    className="font-bold border-2 border-black shadow-lg text-xs sm:text-sm"
+                    style={{ backgroundColor: '#efecdd', color: feature.color }}
+                  >
+                    {feature.badge}
+                  </Badge>
                 </CardContent>
               </Card>
             ))}
@@ -295,49 +187,216 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              ¿No sabés cuál elegir?
-            </h2>
-            <p className="text-xl mb-10 leading-relaxed">
-              Nuestro equipo te ayuda a encontrar la funda perfecta para tu iPhone. 
-              <span className="font-semibold text-yellow-300"> ¡Consultanos sin compromiso!</span>
-            </p>
+      {/* Featured Products Retro */}
+      <section id="destacados" className="py-16 sm:py-20">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 sm:mb-12 gap-4">
+            <div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4">
+                <div 
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center border-3 border-black shadow-lg  mx-auto sm:mx-0"
+                  style={{ backgroundColor: '#9d1d25' }}
+                >
+                  <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                </div>
+                <h2 className="text-3xl sm:text-5xl font-black text-center sm:text-left" style={{ color: '#282828' }}>
+                  FUNDAS DESTACADAS
+                </h2>
+              </div>
+              <p className="text-lg sm:text-xl font-medium text-center sm:text-left" style={{ color: '#9d1d25' }}>
+                Las más elegidas por ustedes
+              </p>
+            </div>
             <Button 
-              size="lg" 
-              className="bg-white text-green-600 hover:bg-gray-100 shadow-2xl text-lg px-8 py-4 h-auto"
-              onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Necesito ayuda para elegir una funda para mi iPhone 😊', '_blank')}
+              asChild 
+              className="hidden lg:flex font-bold border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all"
+              style={{ backgroundColor: '#efecdd', color: '#282828' }}
             >
-              💬 Consultar por WhatsApp
-              <ArrowRight className="ml-3 h-6 w-6" />
+              <Link href="#todas-las-fundas">
+                Ver Todas
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
             </Button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 ">
+            {featuredLoading ? (
+              Array.from({ length: 4 }).map((_, index) => (
+                <ProductSkeleton key={index} />
+              ))
+            ) : (
+              featuredProducts.map((product) => (
+                <div key={product.id} className="relative group">
+                  <ProductCard product={product} />
+                </div>
+              ))
+            )}
           </div>
         </div>
       </section>
 
-      {/* All Products Section Mejorado */}
-      <section id="todas-las-fundas" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+      {/* Best Sellers Retro */}
+      <section className="py-16 sm:py-20" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
-          <div className="mb-12">
-            <div className="text-center mb-8">
-              <h2 className="text-4xl font-bold mb-4 text-gray-900">Todas las Fundas</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-6">
+              <div 
+                className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center border-3 border-black shadow-lg "
+                style={{ backgroundColor: '#be3a47' }}
+              >
+                <Award className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black" style={{ color: '#282828' }}>
+                TOP VENTAS
+              </h2>
+            </div>
+            <p className="text-lg sm:text-xl font-medium max-w-3xl mx-auto leading-relaxed px-4" style={{ color: '#9d1d25' }}>
+              🚀 Las fundas que más confían nuestros clientes
+              <br />
+              <span className="font-black">¡Diseños únicos y protección garantizada!</span>
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {featuredLoading ? (
+              Array.from({ length: 3 }).map((_, index) => (
+                <ProductSkeleton key={index} />
+              ))
+            ) : (
+              bestSellers.map((product) => (
+                <div key={product.id} className="relative group">
+                  <ProductCard product={product} />
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Models Section Retro */}
+      <section className="py-16 sm:py-20 ">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl font-black mb-4 sm:mb-6 px-2" style={{ color: '#282828' }}>
+              COMPATIBLE CON TODOS LOS iPHONE
+            </h2>
+            <p className="text-lg sm:text-xl font-medium max-w-3xl mx-auto px-4" style={{ color: '#9d1d25' }}>
+              Desde iPhone 11 hasta iPhone 16 Pro Max. ¡Encontrá la funda perfecta para tu modelo!
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+            {['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16'].map((model) => (
+              <Card 
+                key={model} 
+                className="text-center p-4 sm:p-6 border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all duration-300 cursor-pointer transform hover:-translate-y-1 hover:-translate-x-1 bg-white"
+                onClick={() => setSelectedCategory(model)}
+              >
+                <CardContent className="p-0">
+                  <div 
+                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 border-2 border-black"
+                    style={{ backgroundColor: '#efecdd' }}
+                  >
+                    <Smartphone className="h-6 w-6 sm:h-8 sm:w-8" style={{ color: '#282828' }} />
+                  </div>
+                  <p className="font-black text-xs sm:text-sm" style={{ color: '#282828' }}>
+                    {model.replace('iPhone ', '')}
+                  </p>
+                  <p className="text-xs font-medium mt-1" style={{ color: '#9d1d25' }}>Ver fundas</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Retro 
+      <section className="py-16 sm:py-20" style={{ background: 'linear-gradient(135deg, #282828 0%, #9d1d25 100%)' }}>
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black mb-4 sm:mb-6 text-white transform -rotate-1 px-2">
+              ¿NO SABÉS CUÁL ELEGIR? 
+            </h2>
+            <p className="text-lg sm:text-xl mb-8 sm:mb-10 leading-relaxed text-white/90 font-medium px-4">
+              Nuestro equipo te ayuda a encontrar la funda perfecta para tu iPhone
+              <br />
+              <span className="font-black text-yellow-300">¡Consultanos sin compromiso!</span>
+            </p>
+            <Button 
+              size="lg" 
+              className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-black rounded-full border-4 border-white shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 hover:rotate-1"
+              style={{ backgroundColor: '#efecdd', color: '#9d1d25' }}
+              onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Necesito ayuda para elegir una funda para mi iPhone 😊', '_blank')}
+            >
+              <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+              CONSULTAR POR WHATSAPP
+              <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6" />
+            </Button>
+          </div>
+        </div>
+      </section>
+      */}
+
+      {/* All Products Section Retro Mejorado */}
+      <section id="todas-las-fundas" className="py-16 sm:py-20" style={{ backgroundColor: '#efecdd' }}>
+        <div className="container mx-auto px-4">
+          <div className="mb-8 sm:mb-12">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-3xl sm:text-5xl font-black mb-3 sm:mb-4 px-2" style={{ color: '#282828' }}>
+                TODAS LAS FUNDAS
+              </h2>
+              <p className="text-lg sm:text-xl font-medium max-w-3xl mx-auto px-4" style={{ color: '#9d1d25' }}>
                 Explorá nuestro catálogo completo y encontrá la funda perfecta para tu iPhone
               </p>
             </div>
             
-            <div className="flex flex-col lg:flex-row gap-6 max-w-4xl mx-auto">
-              <div className="flex-1">
-                <SearchBar onSearch={setSearchQuery} />
-              </div>
-              <div className="flex-1">
-                <CategoryFilter 
-                  selectedCategory={selectedCategory}
-                  onCategoryChange={setSelectedCategory}
-                />
+            {/* Búsqueda y filtros mejorados */}
+            <div className="max-w-6xl mx-auto">
+              <div 
+                className="p-6 sm:p-8 border-4 border-black shadow-[6px_6px_0px_0px_#282828] bg-white mb-8"
+                style={{ borderRadius: '0px' }}
+              >
+                <div className="flex flex-col lg:flex-row gap-8">
+                  <div className="flex-1">
+                    <SearchBar onSearch={setSearchQuery} />
+                  </div>
+                  <div className="flex-1">
+                    <CategoryFilter 
+                      selectedCategory={selectedCategory}
+                      onCategoryChange={setSelectedCategory}
+                    />
+                  </div>
+                </div>
+                
+                {/* Resultados de búsqueda */}
+                {(searchQuery || selectedCategory !== 'Todos') && (
+                  <div className="mt-6 pt-6 border-t-3 border-black">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg font-black" style={{ color: '#282828' }}>
+                          RESULTADOS:
+                        </span>
+                        <span className="text-lg font-medium" style={{ color: '#9d1d25' }}>
+                          {filteredProducts.length} funda{filteredProducts.length !== 1 ? 's' : ''}
+                          {selectedCategory !== 'Todos' && ` para ${selectedCategory}`}
+                          {searchQuery && ` con "${searchQuery}"`}
+                        </span>
+                      </div>
+                      
+                      <Button
+                        onClick={() => {
+                          setSearchQuery('');
+                          setSelectedCategory('Todos');
+                        }}
+                        size="sm"
+                        className="font-bold border-2 border-black shadow-[2px_2px_0px_0px_#282828] hover:shadow-[3px_3px_0px_0px_#282828] transition-all"
+                        style={{ backgroundColor: '#be3a47', color: 'white' }}
+                      >
+                        LIMPIAR FILTROS
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -345,38 +404,65 @@ export default function Home() {
           {isLoading ? (
             <ProductGridSkeleton count={8} />
           ) : filteredProducts.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="w-32 h-32 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Star className="h-16 w-16 text-gray-400" />
+            <div className="text-center py-12 sm:py-16">
+              <div 
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 border-4 border-black shadow-[6px_6px_0px_0px_#282828]"
+                style={{ backgroundColor: '#be3a47' }}
+              >
+                <Star className="h-12 w-12 sm:h-16 sm:w-16 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">No encontramos fundas</h3>
-              <p className="text-gray-600 mb-8 text-lg">
-                {selectedCategory !== 'Todos' 
+              <h3 className="text-2xl sm:text-3xl font-black mb-3 sm:mb-4 px-2" style={{ color: '#282828' }}>
+                NO ENCONTRAMOS FUNDAS
+              </h3>
+              <p className="text-base sm:text-lg mb-6 sm:mb-8 font-medium px-4 max-w-md mx-auto" style={{ color: '#9d1d25' }}>
+                {selectedCategory !== 'Todos' && searchQuery
+                  ? `No hay fundas para ${selectedCategory} que coincidan con "${searchQuery}"`
+                  : selectedCategory !== 'Todos' 
                   ? `No tenemos fundas disponibles para ${selectedCategory}` 
+                  : searchQuery
+                  ? `No encontramos fundas que coincidan con "${searchQuery}"`
                   : 'Intenta con una búsqueda diferente'
                 }
               </p>
-              <Button 
-                size="lg"
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('Todos');
-                }}
-              >
-                Ver Todas las Fundas
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  size="lg"
+                  className="font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all"
+                  style={{ backgroundColor: '#9d1d25', color: 'white' }}
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('Todos');
+                  }}
+                >
+                  VER TODAS LAS FUNDAS
+                </Button>
+                {searchQuery && (
+                  <Button 
+                    size="lg"
+                    className="font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all bg-white"
+                    style={{ color: '#282828' }}
+                    onClick={() => setSearchQuery('')}
+                  >
+                    LIMPIAR BÚSQUEDA
+                  </Button>
+                )}
+              </div>
             </div>
           ) : (
             <>
-              <div className="flex items-center justify-between mb-8">
-                <p className="text-lg text-gray-600">
-                  Mostrando <span className="font-semibold text-gray-900">{filteredProducts.length}</span> funda{filteredProducts.length !== 1 ? 's' : ''}
-                  {selectedCategory !== 'Todos' && ` para ${selectedCategory}`}
-                  {searchQuery && ` con "${searchQuery}"`}
-                </p>
+              {/* Estadísticas de productos */}
+              <div className="mb-8">
+                <div 
+                  className="max-w-2xl mx-auto text-center p-4 border-3 border-black shadow-[4px_4px_0px_0px_#282828] bg-white"
+                >
+                  <span className="text-lg font-black" style={{ color: '#282828' }}>
+                    MOSTRANDO {filteredProducts.length} DE {products.length} FUNDAS DISPONIBLES
+                  </span>
+                </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {/* Grid de productos */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

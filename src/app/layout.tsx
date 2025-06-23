@@ -38,7 +38,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Header />
-        <main className="min-h-screen">
+        <main className="min-h-screen" style={{ backgroundColor: '#efecdd' }}>
           {children}
         </main>
         <Footer />

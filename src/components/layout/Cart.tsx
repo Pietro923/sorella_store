@@ -1,8 +1,7 @@
 'use client';
 
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Smartphone } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useCartStore } from '@/lib/store';
@@ -35,18 +34,27 @@ export default function Cart({ onClose }: CartProps) {
 
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center h-full p-6">
-        <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-          <ShoppingBag className="h-10 w-10 text-gray-400" />
+      <div className="flex flex-col items-center justify-center h-full p-6" style={{ backgroundColor: '#efecdd' }}>
+        <div 
+          className="w-24 h-24 rounded-full flex items-center justify-center mb-6 border-4 border-black shadow-[6px_6px_0px_0px_#282828]"
+          style={{ backgroundColor: '#9d1d25' }}
+        >
+          <ShoppingBag className="h-12 w-12 text-white" />
         </div>
         <SheetHeader className="text-center">
-          <SheetTitle className="text-xl">Tu carrito está vacío</SheetTitle>
+          <SheetTitle className="text-2xl font-black" style={{ color: '#282828' }}>
+            TU CARRITO ESTÁ VACÍO
+          </SheetTitle>
         </SheetHeader>
-        <p className="text-muted-foreground mt-2 text-center max-w-sm">
+        <p className="font-medium mt-4 text-center max-w-sm leading-relaxed" style={{ color: '#9d1d25' }}>
           Descubrí nuestras fundas exclusivas y encontrá la perfecta para tu iPhone
         </p>
-        <Button className="mt-6" onClick={onClose}>
-          Explorar Fundas
+        <Button 
+          className="mt-8 font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all"
+          style={{ backgroundColor: '#9d1d25', color: 'white' }}
+          onClick={onClose}
+        >
+          EXPLORAR FUNDAS
         </Button>
       </div>
     );
@@ -54,16 +62,22 @@ export default function Cart({ onClose }: CartProps) {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header mejorado */}
-      <div className="p-4 border-b bg-gradient-to-r from-blue-50 to-purple-50">
+      {/* Header retro */}
+      <div 
+        className="p-6 border-b-4 border-black"
+        style={{ background: 'linear-gradient(135deg, #9d1d25 0%, #be3a47 100%)' }}
+      >
         <SheetHeader>
-          <SheetTitle className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-              <ShoppingBag className="h-5 w-5 text-white" />
+          <SheetTitle className="flex items-center gap-3 text-white">
+            <div 
+              className="w-12 h-12 rounded-full flex items-center justify-center border-3 border-white shadow-lg"
+              style={{ backgroundColor: '#efecdd' }}
+            >
+              <ShoppingBag className="h-6 w-6" style={{ color: '#9d1d25' }} />
             </div>
             <div>
-              <span className="text-xl font-bold">Mi Carrito</span>
-              <p className="text-sm text-muted-foreground font-normal">
+              <span className="text-2xl font-black">MI CARRITO</span>
+              <p className="text-sm font-bold" style={{ color: '#efecdd' }}>
                 {totalItems} {totalItems === 1 ? 'producto' : 'productos'}
               </p>
             </div>
@@ -72,9 +86,12 @@ export default function Cart({ onClose }: CartProps) {
       </div>
 
       {/* Lista de productos */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4" style={{ backgroundColor: '#efecdd' }}>
         {items.map((item) => (
-          <Card key={item.id} className="overflow-hidden hover:shadow-md transition-shadow">
+          <Card 
+            key={item.id} 
+            className="overflow-hidden border-4 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all bg-white"
+          >
             <CardContent className="p-4">
               <div className="flex items-start space-x-4">
                 {/* Imagen del producto */}
@@ -84,87 +101,64 @@ export default function Cart({ onClose }: CartProps) {
                     alt={item.name}
                     width={80}
                     height={80}
-                    className="rounded-lg object-cover border"
+                    className="rounded-lg object-cover border-2 border-black"
                   />
-                  <Badge 
-                    variant="secondary" 
-                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                  >
-                    {item.quantity}
-                  </Badge>
                 </div>
                 
                 {/* Información del producto */}
-                <div className="flex-1 min-w-0">
-                  <h4 className="font-semibold text-sm leading-tight mb-1">
-                    {item.name}
-                  </h4>
-                  
-                  {/* Modelos compatibles (muestra hasta 2) */}
-                  <div className="flex items-center gap-1 mb-2">
-                    <Smartphone className="h-3 w-3 text-muted-foreground" />
-                    <div className="flex gap-1">
-                      {item.model.slice(0, 2).map((model) => (
-                        <Badge key={model} variant="outline" className="text-xs px-1 py-0">
-                          {model.replace('iPhone ', '')}
-                        </Badge>
-                      ))}
-                      {item.model.length > 2 && (
-                        <Badge variant="outline" className="text-xs px-1 py-0">
-                          +{item.model.length - 2}
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
+<div className="flex-1 min-w-0">
+  <h4 className="font-black text-sm leading-tight mb-2" style={{ color: '#282828' }}>
+    {item.name}
+  </h4>
 
-                  {/* Precio y controles */}
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-1">
-                      <p className="text-lg font-bold text-primary">
-                        {formatPrice(item.price)}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Subtotal: {formatPrice(item.price * item.quantity)}
-                      </p>
-                    </div>
+  {/* Precio y subtotal */}
+  <div className="space-y-1 mb-4">
+    <p className="text-lg font-black" style={{ color: '#9d1d25' }}>
+      {formatPrice(item.price)}
+    </p>
+    <p className="text-xs font-medium" style={{ color: '#282828' }}>
+      Subtotal: {formatPrice(item.price * item.quantity)}
+    </p>
+  </div>
 
-                    {/* Controles de cantidad */}
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center border rounded-lg">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 rounded-r-none"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          <Minus className="h-3 w-3" />
-                        </Button>
-                        
-                        <div className="w-10 h-8 flex items-center justify-center text-sm font-medium border-x">
-                          {item.quantity}
-                        </div>
-                        
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 rounded-l-none"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-3 w-3" />
-                        </Button>
-                      </div>
+  {/* Controles de cantidad (AHORA ABAJO) */}
+  <div className="flex items-center gap-2">
+    <div className="flex items-center border-3 border-black shadow-[2px_2px_0px_0px_#282828] bg-white">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 rounded-none border-r-2 border-black hover:bg-gray-100"
+        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+      >
+        <Minus className="h-3 w-3" style={{ color: '#282828' }} />
+      </Button>
 
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-destructive hover:text-destructive hover:bg-destructive/10"
-                        onClick={() => removeItem(item.id)}
-                      >
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+      <div className="w-10 h-8 flex items-center justify-center text-sm font-black bg-white" style={{ color: '#282828' }}>
+        {item.quantity}
+      </div>
+
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 rounded-none border-l-2 border-black hover:bg-gray-100"
+        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+      >
+        <Plus className="h-3 w-3" style={{ color: '#282828' }} />
+      </Button>
+    </div>
+
+    <Button
+      variant="ghost"
+      size="icon"
+      className="h-8 w-8 border-2 border-black shadow-[2px_2px_0px_0px_#282828] hover:shadow-[3px_3px_0px_0px_#282828] transition-all"
+      style={{ backgroundColor: '#be3a47', color: 'white' }}
+      onClick={() => removeItem(item.id)}
+    >
+      <Trash2 className="h-3 w-3" />
+    </Button>
+  </div>
+</div>
+                
               </div>
             </CardContent>
           </Card>
@@ -172,58 +166,67 @@ export default function Cart({ onClose }: CartProps) {
       </div>
 
       {/* Footer del carrito */}
-      <div className="p-4 border-t bg-gray-50/50 space-y-4">
+      <div className="p-6 border-t-4 border-black space-y-6 bg-white">
         {/* Resumen de costos */}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Subtotal ({totalItems} productos)</span>
-            <span>{formatPrice(total)}</span>
+            <span className="font-medium" style={{ color: '#9d1d25' }}>
+              Subtotal ({totalItems} productos)
+            </span>
+            <span className="font-black" style={{ color: '#282828' }}>
+              {formatPrice(total)}
+            </span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Envío</span>
-            <span className="text-green-600 font-medium">Gratis</span>
-          </div>
-          <Separator />
+          <Separator className="bg-black h-0.5" />
           <div className="flex justify-between items-center">
-            <span className="text-lg font-semibold">Total</span>
-            <span className="text-2xl font-bold text-primary">{formatPrice(total)}</span>
+            <span className="text-xl font-black" style={{ color: '#282828' }}>TOTAL</span>
+            <span className="text-3xl font-black" style={{ color: '#9d1d25' }}>
+              {formatPrice(total)}
+            </span>
           </div>
         </div>
 
         {/* Botones de acción */}
-        <div className="space-y-2">
-          <Button asChild className="w-full h-12 text-base" onClick={handleCheckout}>
-            <Link href="/checkout" className="flex items-center justify-center gap-2">
-              Finalizar Compra
-              <ArrowRight className="h-4 w-4" />
+        <div className="space-y-3">
+          <Button 
+            asChild 
+            className="w-full h-14 text-lg font-black border-4 border-black shadow-[6px_6px_0px_0px_#282828] hover:shadow-[8px_8px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-1 hover:-translate-x-1" 
+            onClick={handleCheckout}
+            style={{ backgroundColor: '#9d1d25', color: 'white' }}
+          >
+            <Link href="/checkout" className="flex items-center justify-center gap-3">
+              FINALIZAR COMPRA
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </Button>
           
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <Button
               variant="outline"
-              className="flex-1"
+              className="flex-1 font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all bg-white"
+              style={{ color: '#282828' }}
               onClick={onClose}
             >
-              Seguir Comprando
+              SEGUIR COMPRANDO
             </Button>
             
             <Button
-              variant="ghost"
               size="icon"
               onClick={clearCart}
-              className="text-destructive hover:text-destructive hover:bg-destructive/10"
+              className="border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all"
+              style={{ backgroundColor: '#be3a47', color: 'white' }}
             >
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-5 w-5" />
             </Button>
           </div>
         </div>
 
         {/* Mensaje de confianza */}
-        <div className="text-center">
-          <p className="text-xs text-muted-foreground">
-            🔒 Compra segura • 📱 Atención por WhatsApp • 🚚 Envío gratis
-          </p>
+        <div 
+          className="text-center p-4 border-3 border-black shadow-[4px_4px_0px_0px_#282828] font-bold"
+          style={{ backgroundColor: '#efecdd', color: '#282828' }}
+        >
+          COMPRA SEGURA • ATENCIÓN POR WHATSAPP 
         </div>
       </div>
     </div>
