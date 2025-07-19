@@ -4,15 +4,14 @@ import { getProductsFromSheets } from '@/lib/sheets';
 
 export async function GET() {
   try {
-    console.log('🔍 API /products - Iniciando...');
+    console.log('🔍 API /products - Iniciando (método simple)...');
     
     // Verificar variables de entorno
     console.log('📋 Variables disponibles:', {
       hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-      hasGoogleCredentialsBase64: !!process.env.GOOGLE_CREDENTIALS_BASE64,
-      hasOldServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      hasOldPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+      hasGoogleApiKey: !!process.env.GOOGLE_API_KEY,
       googleSheetsIdPreview: process.env.GOOGLE_SHEETS_ID?.substring(0, 10) + '...',
+      apiKeyPreview: process.env.GOOGLE_API_KEY?.substring(0, 10) + '...',
     });
     
     const products = await getProductsFromSheets();
@@ -21,22 +20,21 @@ export async function GET() {
       count: products.length,
       firstProductPrice: products[0]?.price,
       firstProductId: products[0]?.id,
-      source: products.length === 14 ? 'Probablemente data.ts fallback' : 'Probablemente Google Sheets'
+      source: products.length === 14 ? 'Probablemente data.ts fallback' : 'Google Sheets API'
     });
     
     return NextResponse.json({
       success: true,
       products,
       lastUpdated: new Date().toISOString(),
-      source: 'google-sheets',
+      source: 'google-sheets-api',
       debug: {
         productCount: products.length,
         firstProductPrice: products[0]?.price,
+        method: 'public-api',
         environmentCheck: {
           hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-          hasGoogleCredentialsBase64: !!process.env.GOOGLE_CREDENTIALS_BASE64,
-          hasOldServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-          hasOldPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+          hasGoogleApiKey: !!process.env.GOOGLE_API_KEY,
         }
       }
     });

@@ -1,99 +1,95 @@
 // src/lib/sheets.ts
-import { google } from 'googleapis';
 import { Product } from '@/types';
-
-// Función para manejar la clave privada
-function getPrivateKey(): string {
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY;
-  const privateKeyBase64 = process.env.GOOGLE_PRIVATE_KEY_BASE64;
-  
-  console.log('🔑 Procesando clave privada...');
-  console.log('📋 privateKey existe:', !!privateKey);
-  console.log('📋 privateKeyBase64 existe:', !!privateKeyBase64);
-  
-  if (privateKeyBase64) {
-    // Si tenemos la versión Base64, decodificarla
-    console.log('✅ Usando GOOGLE_PRIVATE_KEY_BASE64');
-    return Buffer.from(privateKeyBase64, 'base64').toString('utf8');
-  }
-  
-  if (privateKey) {
-    // Intentar limpiar la clave normal
-    console.log('⚠️ Usando GOOGLE_PRIVATE_KEY (puede fallar en Vercel)');
-    return privateKey.replace(/\\n/g, '\n');
-  }
-  
-  throw new Error('No se encontró GOOGLE_PRIVATE_KEY ni GOOGLE_PRIVATE_KEY_BASE64');
-}
-
-// Configuración de autenticación
-const auth = new google.auth.GoogleAuth({
-  credentials: {
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: getPrivateKey(),
-  },
-  scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-});
-
-const sheets = google.sheets({ version: 'v4', auth });
 
 export async function getProductsFromSheets(): Promise<Product[]> {
   try {
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const apiKey = process.env.GOOGLE_API_KEY;
     
-    console.log('🔍 Iniciando getProductsFromSheets...');
+    console.log('🔍 Iniciando getProductsFromSheets (método simple)...');
+    console.log('📋 Variables:', {
+      hasSpreadsheetId: !!spreadsheetId,
+      hasApiKey: !!apiKey,
+      spreadsheetIdPreview: spreadsheetId?.substring(0, 15) + '...'
+    });
     
-    if (!spreadsheetId) {
-      throw new Error('GOOGLE_SHEETS_ID no está configurado');
+    if (!spreadsheetId || !apiKey) {
+      throw new Error('GOOGLE_SHEETS_ID o GOOGLE_API_KEY no configurados');
     }
 
-    // Leer datos de la hoja "Productos"
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: 'Productos!A2:I1000', // Saltamos headers directamente
-    });
-
-    const rows = response.data.values;
+    // URL de la API pública de Google Sheets
+    const range = 'Productos!A2:I1000';
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
     
-    if (!rows || rows.length === 0) {
+    console.log('🔗 Llamando a Google Sheets API pública...');
+    
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('✅ Respuesta recibida:', {
+      hasValues: !!data.values,
+      rowCount: data.values?.length || 0
+    });
+    
+    if (!data.values || data.values.length === 0) {
       console.log('⚠️ No hay datos en la hoja - usando fallback');
       const { products: fallbackProducts } = await import('./data');
       return fallbackProducts;
     }
 
-    console.log('✅ Datos recibidos de Google Sheets:', rows.length, 'filas');
+    console.log('📊 Procesando', data.values.length, 'filas de datos');
 
-    const products: Product[] = rows
-      .filter(row => row.length >= 7 && row[0] && row[0] !== 'ID')
-      .map((row, index) => {
-        try {
-          // Parsear los modelos (separados por comas)
-          const modelsString = row[7] || '';
-          const models = modelsString
-            .split(',')
-            .map((model: string) => model.trim())
-            .filter((model: string) => model.length > 0);
+    interface RawProductRow extends Array<string> {}
 
-          return {
-            id: row[0]?.toString() || `product-${index + 1}`,
-            name: row[1]?.toString() || 'Producto sin nombre',
-            description: row[2]?.toString() || 'Sin descripción',
-            price: parseFloat(row[3]?.toString().replace(/[^0-9.]/g, '') || '0'),
-            image: row[4]?.toString() || 'placeholder',
-            category: row[5]?.toString() || 'Fundas',
-            stock: parseInt(row[6]?.toString() || '0', 10),
-            model: models.length > 0 ? models : ['iPhone 11']
-          };
-        } catch {
-          return null;
-        }
-      })
-      .filter((product): product is Product => product !== null);
+    interface ParsedProduct {
+        id: string;
+        name: string;
+        description: string;
+        price: number;
+        image: string;
+        category: string;
+        stock: number;
+        model: string[];
+    }
 
-    console.log('🎉 Productos procesados exitosamente:', products.length);
+    const products: Product[] = data.values
+        .filter((row: RawProductRow) => row.length >= 7 && row[0] && row[0] !== 'ID')
+        .map((row: RawProductRow, index: number): ParsedProduct | null => {
+            try {
+                // Parsear los modelos (separados por comas)
+                const modelsString: string = row[7] || '';
+                const models: string[] = modelsString
+                    .split(',')
+                    .map((model: string) => model.trim())
+                    .filter((model: string) => model.length > 0);
+
+                const product: ParsedProduct = {
+                    id: row[0]?.toString() || `product-${index + 1}`,
+                    name: row[1]?.toString() || 'Producto sin nombre',
+                    description: row[2]?.toString() || 'Sin descripción',
+                    price: parseFloat(row[3]?.toString().replace(/[^0-9.]/g, '') || '0'),
+                    image: row[4]?.toString() || 'placeholder',
+                    category: row[5]?.toString() || 'Fundas',
+                    stock: parseInt(row[6]?.toString() || '0', 10),
+                    model: models.length > 0 ? models : ['iPhone 11']
+                };
+
+                return product;
+            } catch {
+                return null;
+            }
+        })
+        .filter((product: ParsedProduct | null): product is Product => product !== null);
+
+    console.log('🎉', products.length, 'productos procesados exitosamente');
     console.log('📋 Primer producto:', { 
       name: products[0]?.name, 
-      price: products[0]?.price 
+      price: products[0]?.price,
+      stock: products[0]?.stock 
     });
 
     return products;
@@ -112,17 +108,16 @@ export async function getProductsFromSheets(): Promise<Product[]> {
 export async function validateSheetsConnection(): Promise<boolean> {
   try {
     const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+    const apiKey = process.env.GOOGLE_API_KEY;
     
-    if (!spreadsheetId) {
+    if (!spreadsheetId || !apiKey) {
       return false;
     }
 
-    await sheets.spreadsheets.get({
-      spreadsheetId,
-      includeGridData: false,
-    });
-
-    return true;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?key=${apiKey}`;
+    const response = await fetch(url);
+    
+    return response.ok;
   } catch {
     return false;
   }
