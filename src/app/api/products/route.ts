@@ -4,16 +4,42 @@ import { getProductsFromSheets } from '@/lib/sheets';
 
 export async function GET() {
   try {
+    console.log('🔍 API /products - Iniciando...');
+    
+    // Verificar variables de entorno
+    console.log('📋 Variables disponibles:', {
+      hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
+      hasServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+      googleSheetsIdPreview: process.env.GOOGLE_SHEETS_ID?.substring(0, 10) + '...',
+    });
+    
     const products = await getProductsFromSheets();
+    
+    console.log('📦 Productos obtenidos:', {
+      count: products.length,
+      firstProductPrice: products[0]?.price,
+      firstProductId: products[0]?.id,
+      source: products.length === 14 ? 'Probablemente data.ts fallback' : 'Probablemente Google Sheets'
+    });
     
     return NextResponse.json({
       success: true,
       products,
       lastUpdated: new Date().toISOString(),
-      source: 'google-sheets'
+      source: 'google-sheets',
+      debug: {
+        productCount: products.length,
+        firstProductPrice: products[0]?.price,
+        environmentCheck: {
+          hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
+          hasServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+          hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+        }
+      }
     });
   } catch (error) {
-    console.error('Error en API /products:', error);
+    console.error('❌ Error en API /products:', error);
     
     return NextResponse.json({
       success: false,
