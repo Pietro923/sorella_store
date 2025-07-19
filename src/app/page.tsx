@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
-import { products } from '@/lib/data';
 import ProductCard from '@/components/product/ProductCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import SearchBar from '@/components/SearchBar';
 import ProductSkeleton, { ProductGridSkeleton } from '@/components/ProductSkeleton';
+import { useProducts } from '@/hooks/useProducts';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,21 +15,13 @@ import Link from 'next/link';
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [featuredLoading, setFeaturedLoading] = useState(true);
-
+  const { products, categories, isLoading, error, lastUpdated } = useProducts();
+  
   useEffect(() => {
-    const featuredTimer = setTimeout(() => {
-      setFeaturedLoading(false);
-    }, 1000);
-    const allProductsTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-    return () => {
-      clearTimeout(featuredTimer);
-      clearTimeout(allProductsTimer);
-    };
-  }, []);
+    if (error) {
+      console.error('Error al cargar productos:', error);
+    }
+  }, [products, isLoading, error, lastUpdated]);
 
   const filteredProducts = useMemo(() => {
     if (isLoading) return [];
@@ -38,14 +30,15 @@ export default function Home() {
                               product.model.includes(selectedCategory);
       
       const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                           product.description.toLowerCase().includes(searchQuery.toLowerCase());
+                          product.description.toLowerCase().includes(searchQuery.toLowerCase());
       
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery, isLoading]);
+  }, [selectedCategory, searchQuery, products, isLoading]);
 
-  const featuredProducts = featuredLoading ? [] : products.slice(0, 4);
-  const bestSellers = featuredLoading ? [] : products.sort((a, b) => b.stock - a.stock).slice(0, 3);
+  const featuredProducts = isLoading ? [] : products.slice(0, 4);
+  const bestSellers = isLoading ? [] : products.sort((a, b) => b.stock - a.stock).slice(0, 3);
+  
 
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ backgroundColor: '#efecdd' }}>
@@ -220,7 +213,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 ">
-            {featuredLoading ? (
+             {isLoading ? (
               Array.from({ length: 4 }).map((_, index) => (
                 <ProductSkeleton key={index} />
               ))
@@ -258,7 +251,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {featuredLoading ? (
+            {isLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
                 <ProductSkeleton key={index} />
               ))
@@ -364,6 +357,7 @@ export default function Home() {
                     <CategoryFilter 
                       selectedCategory={selectedCategory}
                       onCategoryChange={setSelectedCategory}
+                      categories={categories}
                     />
                   </div>
                 </div>

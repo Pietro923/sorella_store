@@ -7,6 +7,7 @@ import { Smartphone } from 'lucide-react';
 interface CategoryFilterProps {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
+  categories: string[]; // Recibir categorías como prop
 }
 
 export default function CategoryFilter({ 
