@@ -59,7 +59,7 @@ export async function getProductsFromSheets(): Promise<Product[]> {
 
     return products;
 
-  } catch (error) {
+  } catch {
     // Fallback en caso de error
     const { products: fallbackProducts } = await import('./data');
     return fallbackProducts;
