@@ -43,7 +43,7 @@ export async function getProductsFromSheets(): Promise<Product[]> {
 
     console.log('📊 Procesando', data.values.length, 'filas de datos');
 
-    interface RawProductRow extends Array<string> {}
+    type RawProductRow = string[];
 
     interface ParsedProduct {
         id: string;
