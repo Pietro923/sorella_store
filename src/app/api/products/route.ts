@@ -9,8 +9,9 @@ export async function GET() {
     // Verificar variables de entorno
     console.log('📋 Variables disponibles:', {
       hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-      hasServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-      hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+      hasGoogleCredentialsBase64: !!process.env.GOOGLE_CREDENTIALS_BASE64,
+      hasOldServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      hasOldPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
       googleSheetsIdPreview: process.env.GOOGLE_SHEETS_ID?.substring(0, 10) + '...',
     });
     
@@ -33,8 +34,9 @@ export async function GET() {
         firstProductPrice: products[0]?.price,
         environmentCheck: {
           hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-          hasServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-          hasPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
+          hasGoogleCredentialsBase64: !!process.env.GOOGLE_CREDENTIALS_BASE64,
+          hasOldServiceAccountEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+          hasOldPrivateKey: !!process.env.GOOGLE_PRIVATE_KEY,
         }
       }
     });
