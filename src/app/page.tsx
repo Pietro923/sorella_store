@@ -76,7 +76,7 @@ export default function Home() {
                 className="text-2xl sm:text-4xl md:text-5xl font-bold px-4 sm:px-8 py-2 sm:py-3 rounded-full border-4 border-black shadow-xl"
                 style={{ backgroundColor: '#efecdd', color: '#9d1d25' }}
               >
-                PREMIUM
+                CON ESTILO
               </h2>
             </div>
           </div>
