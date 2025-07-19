@@ -128,7 +128,7 @@ export default function Header() {
                   className="text-sm font-bold -mt-1 italic"
                   style={{ color: '#282828' }}
                 >
-                  FUNDAS PREMIUM
+                  Lookeá tu celu con nosotros.
                 </div>
               </div>
             </Link>

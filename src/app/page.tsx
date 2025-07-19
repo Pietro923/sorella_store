@@ -82,7 +82,7 @@ export default function Home() {
           </div>
           
           <p className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed text-black font-medium px-2">
-            Protección y estilo únicos para tu iPhone
+            Protección para tu iPhone
             <br />
             <span className=" font-bold text-black">¡Diseños que hacen la diferencia!</span>
           </p>

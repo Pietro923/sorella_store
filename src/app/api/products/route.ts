@@ -4,42 +4,16 @@ import { getProductsFromSheets } from '@/lib/sheets';
 
 export async function GET() {
   try {
-    console.log('🔍 API /products - Iniciando (método simple)...');
-    
-    // Verificar variables de entorno
-    console.log('📋 Variables disponibles:', {
-      hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-      hasGoogleApiKey: !!process.env.GOOGLE_API_KEY,
-      googleSheetsIdPreview: process.env.GOOGLE_SHEETS_ID?.substring(0, 10) + '...',
-      apiKeyPreview: process.env.GOOGLE_API_KEY?.substring(0, 10) + '...',
-    });
-    
     const products = await getProductsFromSheets();
-    
-    console.log('📦 Productos obtenidos:', {
-      count: products.length,
-      firstProductPrice: products[0]?.price,
-      firstProductId: products[0]?.id,
-      source: products.length === 14 ? 'Probablemente data.ts fallback' : 'Google Sheets API'
-    });
     
     return NextResponse.json({
       success: true,
       products,
       lastUpdated: new Date().toISOString(),
-      source: 'google-sheets-api',
-      debug: {
-        productCount: products.length,
-        firstProductPrice: products[0]?.price,
-        method: 'public-api',
-        environmentCheck: {
-          hasGoogleSheetsId: !!process.env.GOOGLE_SHEETS_ID,
-          hasGoogleApiKey: !!process.env.GOOGLE_API_KEY,
-        }
-      }
+      source: 'google-sheets-api'
     });
   } catch (error) {
-    console.error('❌ Error en API /products:', error);
+    console.error('Error en API /products:', error);
     
     return NextResponse.json({
       success: false,
