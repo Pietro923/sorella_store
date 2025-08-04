@@ -220,14 +220,6 @@ export default function Cart({ onClose }: CartProps) {
             </Button>
           </div>
         </div>
-
-        {/* Mensaje de confianza */}
-        <div 
-          className="text-center p-4 border-3 border-black shadow-[4px_4px_0px_0px_#282828] font-bold"
-          style={{ backgroundColor: '#efecdd', color: '#282828' }}
-        >
-          COMPRA SEGURA • ATENCIÓN POR WHATSAPP 
-        </div>
       </div>
     </div>
   );
