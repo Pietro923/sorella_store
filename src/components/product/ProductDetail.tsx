@@ -112,8 +112,8 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* Modelos compatibles */}
-            <Card className="border-4 border-black shadow-[6px_6px_0px_0px_#282828] bg-white">
-              <CardHeader style={{ backgroundColor: '#efecdd' }}>
+            <Card className="border-4 border-black shadow-[6px_6px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
+              <CardHeader>
                 <CardTitle className="text-xl font-black flex items-center gap-3" style={{ color: '#282828' }}>
                   <div 
                     className="w-10 h-10 rounded-lg flex items-center justify-center border-2 border-black"
@@ -121,10 +121,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   >
                     <Smartphone className="h-5 w-5 text-white" />
                   </div>
-                  MODELOS COMPATIBLES
+                  DISPONIBLE PARA:
                 </CardTitle>
               </CardHeader>
-              <CardContent className="bg-white">
+              <CardContent className="">
                 <div className="flex flex-wrap gap-2">
                   {product.model.map((model) => (
                     <Badge 
@@ -140,13 +140,13 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </Card>
 
             {/* Características */}
-            <Card className="border-4 border-black shadow-[6px_6px_0px_0px_#282828] bg-white">
-              <CardHeader style={{ backgroundColor: '#efecdd' }}>
+            <Card className="border-4 border-black shadow-[6px_6px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
+              <CardHeader>
                 <CardTitle className="text-xl font-black" style={{ color: '#282828' }}>
                   CARACTERÍSTICAS
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 bg-white">
+              <CardContent className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="font-medium" style={{ color: '#9d1d25' }}>Material:</span>
                   <span className="font-black" style={{ color: '#282828' }}>TPU rígido</span>

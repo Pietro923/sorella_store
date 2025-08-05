@@ -49,6 +49,7 @@ export default function Home() {
           src="/fondo2.png"
           alt="fondo"
           className="absolute inset-0 w-full h-full object-cover "
+          style={{ filter: 'blur(2px)' }}
         />
         
         <div className="container mx-auto px-4 text-center relative z-10">
@@ -80,13 +81,17 @@ export default function Home() {
               </h2>
             </div>
           </div>
-          
-          <p className="text-lg sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto leading-relaxed text-black font-medium px-2">
+
+          {/* 
+          <p className="text-2xl sm:text-3xl md:text-4xl mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed text-black font-black px-2 drop-shadow-lg">
             Protección para tu iPhone
             <br />
-            <span className=" font-bold text-black">¡Diseños que hacen la diferencia!</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl font-black text-black drop-shadow-xl">
+              ¡Diseños que hacen la diferencia!
+            </span>
           </p>
-
+          */}
+          
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-12 px-4">
             <Link href="#todas-las-fundas" className="w-full sm:w-auto">
               <Button
@@ -371,7 +376,9 @@ export default function Home() {
                           RESULTADOS:
                         </span>
                         <span className="text-lg font-medium" style={{ color: '#9d1d25' }}>
-                          {filteredProducts.length} funda{filteredProducts.length !== 1 ? 's' : ''}
+                          {filteredProducts.length} funda{filteredProducts.length !== 1 ? 's' : ''} disponible{filteredProducts.length !== 1 ? 's' : ''}
+                          {searchQuery && ` con "${searchQuery}"`}
+                          {selectedCategory !== 'Todos' && searchQuery && ` para ${selectedCategory}`}
                           {selectedCategory !== 'Todos' && ` para ${selectedCategory}`}
                           {searchQuery && ` con "${searchQuery}"`}
                         </span>
@@ -450,7 +457,7 @@ export default function Home() {
                   className="max-w-2xl mx-auto text-center p-4 border-3 border-black shadow-[4px_4px_0px_0px_#282828] bg-white"
                 >
                   <span className="text-lg font-black" style={{ color: '#282828' }}>
-                    MOSTRANDO {filteredProducts.length} DE {products.length} FUNDAS DISPONIBLES
+                    MOSTRANDO {filteredProducts.length} FUNDAS DISPONIBLES
                   </span>
                 </div>
               </div>

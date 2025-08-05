@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
@@ -45,6 +45,7 @@ export default function CheckoutForm() {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors }
   } = useForm<CheckoutFormType>({
     resolver: zodResolver(checkoutSchema),
@@ -303,46 +304,60 @@ export default function CheckoutForm() {
                     </div>
                   </div>
 
-                  {/* Tipo de entrega - Diseño mejorado para móvil */}
+                  {/* Tipo de entrega - AQUÍ ESTÁ LA CORRECCIÓN PRINCIPAL */}
                   <div>
                     <Label className="font-black text-sm sm:text-base mb-3 sm:mb-4 block" style={{ color: '#282828' }}>
                       TIPO DE ENTREGA *
                     </Label>
-                    <RadioGroup
-                      value={deliveryType}
-                      onValueChange={(value) => register('deliveryType').onChange({ target: { value } })}
-                      className="space-y-3"
-                    >
-                      <div className="flex items-start space-x-3 p-3 sm:p-4 border-2 sm:border-3 border-black shadow-[2px_2px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
-                        <RadioGroupItem value="delivery" id="delivery" className="border-2 border-black mt-1 flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <Label htmlFor="delivery" className="font-bold flex items-start gap-2 cursor-pointer" style={{ color: '#282828' }}>
-                            <Truck className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: '#9d1d25' }} />
-                            <div>
-                              <div className="text-sm sm:text-base">ENVÍO A DOMICILIO</div>
-                              <div className="text-xs font-bold mt-1 leading-relaxed" style={{ color: '#9d1d25' }}>
-                                Enviamos por Uber. Costo según distancia.
-                              </div>
+                    <Controller
+                      name="deliveryType"
+                      control={control}
+                      render={({ field }) => (
+                        <RadioGroup
+                          value={field.value}
+                          onValueChange={field.onChange}
+                          className="space-y-3"
+                        >
+                          <div className="flex items-start space-x-3 p-3 sm:p-4 border-2 sm:border-3 border-black shadow-[2px_2px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
+                            <RadioGroupItem value="delivery" id="delivery" className="border-2 border-black mt-1 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <Label htmlFor="delivery" className="font-bold flex items-start gap-2 cursor-pointer" style={{ color: '#282828' }}>
+                                <Truck className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: '#9d1d25' }} />
+                                <div>
+                                  <div className="text-sm sm:text-base">ENVÍO A DOMICILIO</div>
+                                  <div className="text-xs font-bold mt-1 leading-relaxed" style={{ color: '#9d1d25' }}>
+                                    Enviamos por Uber. Costo según distancia.
+                                  </div>
+                                </div>
+                              </Label>
                             </div>
-                          </Label>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start space-x-3 p-3 sm:p-4 border-2 sm:border-3 border-black shadow-[2px_2px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
-                        <RadioGroupItem value="pickup" id="pickup" className="border-2 border-black mt-1 flex-shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <Label htmlFor="pickup" className="font-bold flex items-start gap-2 cursor-pointer" style={{ color: '#282828' }}>
-                            <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: '#9d1d25' }} />
-                            <div>
-                              <div className="text-sm sm:text-base">RETIRO EN PUNTO DE ENCUENTRO</div>
-                              <div className="text-xs font-bold mt-1 leading-relaxed" style={{ color: '#9d1d25' }}>
-                                Gratis. Coordinamos lugar por WhatsApp.
-                              </div>
+                          </div>
+                          
+                          <div className="flex items-start space-x-3 p-3 sm:p-4 border-2 sm:border-3 border-black shadow-[2px_2px_0px_0px_#282828]" style={{ backgroundColor: '#efecdd' }}>
+                            <RadioGroupItem value="pickup" id="pickup" className="border-2 border-black mt-1 flex-shrink-0" />
+                            <div className="flex-1 min-w-0">
+                              <Label htmlFor="pickup" className="font-bold flex items-start gap-2 cursor-pointer" style={{ color: '#282828' }}>
+                                <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: '#9d1d25' }} />
+                                <div>
+                                  <div className="text-sm sm:text-base">RETIRO EN PUNTO DE ENCUENTRO</div>
+                                  <div className="text-xs font-bold mt-1 leading-relaxed" style={{ color: '#9d1d25' }}>
+                                    Gratis. Coordinamos lugar por WhatsApp.
+                                  </div>
+                                </div>
+                              </Label>
                             </div>
-                          </Label>
-                        </div>
+                          </div>
+                        </RadioGroup>
+                      )}
+                    />
+                    {errors.deliveryType && (
+                      <div className="flex items-center gap-1 mt-2">
+                        <AlertCircle className="h-3 w-3 text-red-600 flex-shrink-0" />
+                        <p className="text-xs font-black" style={{ color: '#be3a47' }}>
+                          {errors.deliveryType.message}
+                        </p>
                       </div>
-                    </RadioGroup>
+                    )}
                   </div>
 
                   {/* Campos condicionales */}
@@ -376,7 +391,7 @@ export default function CheckoutForm() {
                       <Input
                         id="pickupPoint"
                         {...register('pickupPoint')}
-                        placeholder="Ej: Shopping del Jardín, UNT, Plaza Independencia"
+                        placeholder="Ej: UTN, UNT, Plaza Independencia"
                         className="border-2 sm:border-3 border-black shadow-[2px_2px_0px_0px_#282828] font-medium mt-2 h-10 sm:h-12 text-sm sm:text-base bg-white placeholder:text-gray-500"
                       />
                       {errors.pickupPoint && (

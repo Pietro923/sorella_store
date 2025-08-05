@@ -30,6 +30,11 @@ export default function ProductCard({ product }: ProductCardProps) {
     toast.success(`${product.name} agregado al carrito`);
   };
 
+  // Función para formatear los nombres de modelos
+  const formatModelName = (model: string) => {
+    return model.replace('iPhone ', '');
+  };
+
   return (
     <Card className="overflow-hidden border-4 border-black shadow-[8px_8px_0px_0px_#282828] hover:shadow-[12px_12px_0px_0px_#282828] transition-all duration-300 transform hover:-translate-y-2 hover:-translate-x-1 group p-0" style={{ backgroundColor: '#efecdd' }}>
       <Link href={`/products/${product.id}`}>
@@ -60,26 +65,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
         
-        {/* Modelos compatibles */}
+        {/* Modelos compatibles - TODOS VISIBLES */}
         <div className="mb-3">
+          <p className="text-xs font-black mb-2" style={{ color: '#282828' }}>
+            DISPONIBLE EN:
+          </p>
           <div className="flex flex-wrap gap-1">
-            {product.model.slice(0, 2).map((model) => (
+            {product.model.map((model) => (
               <Badge 
                 key={model} 
                 className="text-xs font-bold border-2 border-black shadow-sm"
                 style={{ backgroundColor: 'white', color: '#282828' }}
               >
-                {model}
+                {formatModelName(model)}
               </Badge>
             ))}
-            {product.model.length > 2 && (
-              <Badge 
-                className="text-xs font-bold border-2 border-black shadow-sm"
-                style={{ backgroundColor: '#9d1d25', color: 'white' }}
-              >
-                +{product.model.length - 2} más
-              </Badge>
-            )}
           </div>
         </div>
         

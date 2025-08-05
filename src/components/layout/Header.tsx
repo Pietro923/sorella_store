@@ -10,6 +10,7 @@ import { useCartStore } from '@/lib/store';
 import Cart from './Cart';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +18,8 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   
   const totalItems = useCartStore(state => state.getTotalItems());
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -57,15 +60,102 @@ export default function Header() {
     setIsCartOpen(false);
   };
 
+  // Función mejorada para manejar la navegación
   const handleNavClick = (href: string) => {
     setIsMenuOpen(false);
+    
     if (href.startsWith('#')) {
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      // Si es un hash y estamos en la página principal
+      if (pathname === '/') {
+        // Hacer scroll directo
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        // Si estamos en otra página, navegar a la principal con el hash
+        router.push(`/${href}`);
+      }
+    } else {
+      // Para rutas normales, navegar directamente
+      router.push(href);
+    }
+  };
+
+  // Función para renderizar enlaces con lógica condicional
+  const renderNavLink = (item: typeof navigation[0], isMobile = false) => {
+    const isHashLink = item.href.startsWith('#');
+    const isOnHomePage = pathname === '/';
+    
+    if (isHashLink && isOnHomePage) {
+      // Si es un hash link y estamos en home, usar comportamiento de scroll
+      return (
+        <button
+          key={item.name}
+          onClick={() => handleNavClick(item.href)}
+          className={`flex items-center gap-2 text-sm font-black transition-all duration-300 hover:scale-110 group px-3 py-2 rounded-xl border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828] ${
+            isMobile 
+              ? 'w-full justify-start space-x-4 p-4 hover:bg-white' 
+              : ''
+          }`}
+          style={{ color: '#282828' }}
+        >
+          {isMobile && (
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center border-2 border-black"
+              style={{ backgroundColor: '#9d1d25' }}
+            >
+              <item.icon className="h-6 w-6 text-white" />
+            </div>
+          )}
+          {!isMobile && <item.icon className="h-6 w-6 text-red-800" />}
+          <div className="flex-1">
+            <div className={isMobile ? "font-black" : ""}>{item.name}</div>
+            {isMobile && (
+              <div className="text-sm font-medium" style={{ color: '#9d1d25' }}>
+                {item.description}
+              </div>
+            )}
+          </div>
+        </button>
+      );
+    } else {
+      // Para otros casos, usar Link normal
+      const finalHref = isHashLink ? `/${item.href}` : item.href;
+      
+      return (
+        <Link
+          key={item.name}
+          href={finalHref}
+          className={`flex items-center gap-2 text-sm font-black transition-all duration-300 hover:scale-110 group px-3 py-2 rounded-xl border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828] ${
+            isMobile 
+              ? 'w-full justify-start space-x-4 p-4 hover:bg-white' 
+              : ''
+          }`}
+          style={{ color: '#282828' }}
+          onClick={() => isMobile && setIsMenuOpen(false)}
+        >
+          {isMobile && (
+            <div 
+              className="w-12 h-12 rounded-lg flex items-center justify-center border-2 border-black"
+              style={{ backgroundColor: '#9d1d25' }}
+            >
+              <item.icon className="h-6 w-6 text-white" />
+            </div>
+          )}
+          {!isMobile && <item.icon className="h-6 w-6 text-red-800" />}
+          <div className="flex-1">
+            <div className={isMobile ? "font-black" : ""}>{item.name}</div>
+            {isMobile && (
+              <div className="text-sm font-medium" style={{ color: '#9d1d25' }}>
+                {item.description}
+              </div>
+            )}
+          </div>
+        </Link>
+      );
     }
   };
 
@@ -135,17 +225,7 @@ export default function Header() {
 
             {/* Desktop Navigation Retro */}
             <nav className="hidden md:flex items-center space-x-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center gap-2 text-sm font-black transition-all duration-300 hover:scale-110 group px-3 py-2 rounded-xl border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828]"
-                  style={{ color: '#282828' }}
-                >
-                  <item.icon className="h-6 w-6 text-red-800" />
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => renderNavLink(item, false))}
 
               {/* Información Dropdown Retro */}
               <DropdownMenu>
@@ -283,25 +363,7 @@ export default function Header() {
                   {/* Navegación principal retro */}
                   <div className="flex flex-col p-6 space-y-3" style={{ backgroundColor: '#efecdd' }}>
                     <div className="text-sm font-black mb-3" style={{ color: '#282828' }}>📱 NAVEGACIÓN</div>
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center space-x-4 p-4 rounded-xl hover:bg-white transition-all duration-300 group border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828]"
-                        onClick={() => handleNavClick(item.href)}
-                      >
-                        <div 
-                          className="w-12 h-12 rounded-lg flex items-center justify-center border-2 border-black"
-                          style={{ backgroundColor: '#9d1d25' }}
-                        >
-                          <item.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-black" style={{ color: '#282828' }}>{item.name}</div>
-                          <div className="text-sm font-medium" style={{ color: '#9d1d25' }}>{item.description}</div>
-                        </div>
-                      </Link>
-                    ))}
+                    {navigation.map((item) => renderNavLink(item, true))}
 
                     {/* Información en móvil */}
                     <Link
