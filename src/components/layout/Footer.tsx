@@ -96,7 +96,7 @@ export default function Footer() {
               >
                 <Button 
                   size="icon" 
-                  className="border-3 border-white shadow-[4px_4px_0px_0px_white] hover:shadow-[6px_6px_0px_0px_white] transition-all"
+                  className="border-3 cursor-pointer border-white shadow-[4px_4px_0px_0px_white] hover:shadow-[6px_6px_0px_0px_white] transition-all"
                   style={{ backgroundColor: '#be3a47', color: 'white' }}
                 >
                   <Instagram className="h-5 w-5" />
@@ -105,7 +105,7 @@ export default function Footer() {
               
               <Button 
                 size="icon" 
-                className="border-3 border-white shadow-[4px_4px_0px_0px_white] hover:shadow-[6px_6px_0px_0px_white] transition-all"
+                className="border-3 cursor-pointer border-white shadow-[4px_4px_0px_0px_white] hover:shadow-[6px_6px_0px_0px_white] transition-all"
                 style={{ backgroundColor: '#9d1d25', color: 'white' }}
                 onClick={handleWhatsApp}
               >
@@ -193,7 +193,7 @@ export default function Footer() {
                 </p>
                 <Button 
                   onClick={handleWhatsApp}
-                  className="w-full font-black border-2 border-white shadow-[2px_2px_0px_0px_white] hover:shadow-[4px_4px_0px_0px_white] transition-all"
+                  className="w-full font-black border-2 cursor-pointer border-white shadow-[2px_2px_0px_0px_white] hover:shadow-[4px_4px_0px_0px_white] transition-all"
                   style={{ backgroundColor: 'white', color: '#9d1d25' }}
                   size="sm"
                 >

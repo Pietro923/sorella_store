@@ -100,7 +100,7 @@ export default function ComoComprarPage() {
       </div>
 
       {/* Hero Section Retro */}
-      <section id="como-comprar" className="py-16">
+      <section id="como-comprar" className="py-16 scroll-mt-24">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-black mb-6" style={{ color: '#282828' }}>
@@ -227,7 +227,7 @@ export default function ComoComprarPage() {
       </section>
 
       {/* Delivery Options Retro */}
-      <section id="envios" className="py-16" style={{ backgroundColor: '#efecdd' }}>
+      <section id="envios" className="py-16 scroll-mt-24" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>
@@ -314,7 +314,7 @@ export default function ComoComprarPage() {
       </section>
 
       {/* FAQ Section Retro */}
-      <section id="preguntas" className="py-16 ">
+      <section id="preguntas" className="py-16 scroll-mt-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-4xl font-black text-center mb-16" style={{ color: '#282828' }}>

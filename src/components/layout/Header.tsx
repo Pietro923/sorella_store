@@ -27,8 +27,8 @@ export default function Header() {
 
   const navigation = [
     { name: 'Inicio', href: '/', icon: Home, description: 'Página principal' },
-    { name: 'Productos', href: '#todas-las-fundas', icon: Package, description: 'Ver todas las fundas' },
     { name: 'Destacados', href: '#destacados', icon: Star, description: 'Fundas más populares' },
+    { name: 'Productos', href: '#todas-las-fundas', icon: Package, description: 'Ver todas las fundas' },
   ];
 
   const infoItems = [
@@ -95,7 +95,7 @@ export default function Header() {
         <button
           key={item.name}
           onClick={() => handleNavClick(item.href)}
-          className={`flex items-center gap-2 text-sm font-black transition-all duration-300 hover:scale-110 group px-3 py-2 rounded-xl border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828] ${
+          className={`flex items-center gap-2 text-sm font-black transition-all cursor-pointer duration-300 hover:scale-110 group px-3 py-2 rounded-xl border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_0px_#282828] ${
             isMobile 
               ? 'w-full justify-start space-x-4 p-4 hover:bg-white' 
               : ''
@@ -224,7 +224,7 @@ export default function Header() {
             </Link>
 
             {/* Desktop Navigation Retro */}
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="hidden md:flex items-center space-x-6 ">
               {navigation.map((item) => renderNavLink(item, false))}
 
               {/* Información Dropdown Retro */}
@@ -277,7 +277,7 @@ export default function Header() {
               <Button
                 size="sm"
                 onClick={handleWhatsAppContact}
-                className="hidden sm:flex font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all duration-300 hover:-translate-y-1 hover:-translate-x-1"
+                className="hidden sm:flex cursor-pointer font-black border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all duration-300 hover:-translate-y-1 hover:-translate-x-1"
                 style={{ backgroundColor: '#9d1d25', color: 'white' }}
               >
                 <Phone className="h-4 w-4 mr-2" />
@@ -302,7 +302,7 @@ export default function Header() {
                 <SheetTrigger asChild>
                   <Button 
                     size="icon" 
-                    className="relative border-3 border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all duration-300 hover:-translate-y-1 hover:-translate-x-1"
+                    className="relative border-3 cursor-pointer border-black shadow-[4px_4px_0px_0px_#282828] hover:shadow-[6px_6px_0px_0px_#282828] transition-all duration-300 hover:-translate-y-1 hover:-translate-x-1"
                     style={{ backgroundColor: '#be3a47', color: 'white' }}
                   >
                     <ShoppingCart className="h-5 w-5" />

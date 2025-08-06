@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://sorella-store.vercel.app/sitemap.xml
+
+# Optimización para bots de búsqueda
+Crawl-delay: 1
+
+# Permitir específicamente secciones importantes
+Allow: /products/
+Allow: /informacion
+Allow: /checkout
+
+# No indexar archivos técnicos (opcional)
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /public/
+
+# Para bots específicos (opcional)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Información adicional del sitio
+# Sitio: Sorella Store - Fundas con Estilo
+# Contacto: jpbonacossa@gmail.com

@@ -96,7 +96,7 @@ export default function Home() {
             <Link href="#todas-las-fundas" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 hover:-rotate-1"
+                className="w-full cursor-pointer sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 hover:-rotate-1"
                 style={{ backgroundColor: '#efecdd', color: '#9d1d25' }}
               >
                 <Zap className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
@@ -106,7 +106,7 @@ export default function Home() {
             </Link>
             <Button 
               size="lg" 
-              className="bg-white text-black w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black   hover:bg-white/10 shadow-2xl transition-all duration-300 transform hover:scale-105 hover:rotate-1"
+              className="bg-white text-black cursor-pointer w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold rounded-full border-4 border-black   hover:bg-white shadow-2xl transition-all duration-300 transform hover:scale-105 hover:rotate-1"
               onClick={() => window.open('https://wa.me/543814199442?text=¡Hola! Quiero consultar sobre las fundas para iPhone 😊', '_blank')}
             >
               <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
@@ -186,7 +186,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Retro */}
-      <section id="destacados" className="py-16 sm:py-20">
+      <section id="destacados" className="py-16 sm:py-20 scroll-mt-24">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 sm:mb-12 gap-4">
             <div>
@@ -300,7 +300,7 @@ export default function Home() {
                   <p className="font-black text-xs sm:text-sm" style={{ color: '#282828' }}>
                     {model.replace('iPhone ', '')}
                   </p>
-                  <p className="text-xs font-medium mt-1" style={{ color: '#9d1d25' }}>Ver fundas</p>
+                  <p className="text-xs font-medium mt-1 " style={{ color: '#9d1d25' }}>Ver fundas</p>
                 </CardContent>
               </Card>
             ))}
@@ -336,7 +336,7 @@ export default function Home() {
       */}
 
       {/* All Products Section Retro Mejorado */}
-      <section id="todas-las-fundas" className="py-16 sm:py-20" style={{ backgroundColor: '#efecdd' }}>
+      <section id="todas-las-fundas" className="py-16 sm:py-20 scroll-mt-24" style={{ backgroundColor: '#efecdd' }}>
         <div className="container mx-auto px-4">
           <div className="mb-8 sm:mb-12">
             <div className="text-center mb-8 sm:mb-12">

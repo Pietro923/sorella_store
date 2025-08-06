@@ -40,21 +40,19 @@ export function useProducts(): UseProductsReturn {
       if (data.success) {
         setProducts(data.products);
         setLastUpdated(data.lastUpdated);
-        console.log(`📦 ${data.products.length} productos cargados desde ${data.source}`);
       } else {
         throw new Error(data.error || 'Error desconocido');
       }
     } catch (err) {
-      console.error('Error al cargar productos:', err);
       setError(err instanceof Error ? err.message : 'Error al cargar productos');
       
       // Fallback: cargar productos hardcodeados
       try {
         const { products: fallbackProducts } = await import('@/lib/data');
         setProducts(fallbackProducts);
-        console.log('📋 Usando productos fallback');
+        
       } catch (fallbackError) {
-        console.error('Error cargando fallback:', fallbackError);
+       
       }
     } finally {
       setIsLoading(false);

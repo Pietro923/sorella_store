@@ -1,0 +1,21 @@
+{
+  "name": "Sorella Store - Fundas con Estilo",
+  "short_name": "Sorella Store",
+  "description": "Fundas con la mejor onda",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#efecdd",
+  "theme_color": "#9d1d25",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/og-image.jpg",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
