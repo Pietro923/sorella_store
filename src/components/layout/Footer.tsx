@@ -10,9 +10,9 @@ import {
   Shield,
   Truck,
   CreditCard,
-  Heart
 } from 'lucide-react';
 import Link from 'next/link';
+import { Pietrobutton } from './p-popover';
 
 export default function Footer() {
   const handleWhatsApp = () => {
@@ -232,9 +232,7 @@ export default function Footer() {
             </div>
             
             <div className="flex items-center space-x-2 font-bold">
-              <span>Hecho con</span>
-              <Heart className="h-4 w-4 fill-current" style={{ color: '#9d1d25' }} />
-              <span>en Tucumán, Argentina</span>
+              <Pietrobutton/>
             </div>
           </div>
         </div>

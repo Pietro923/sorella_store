@@ -126,9 +126,6 @@ export default function Home() {
             >
               ¿POR QUÉ SOMOS LOS MEJORES?
             </h2>
-            <p className="text-lg sm:text-xl font-medium max-w-2xl mx-auto px-4" style={{ color: '#9d1d25' }}>
-              Especialistas en protección premium para tu iPhone desde 2020
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
