@@ -34,8 +34,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           {/* Company Info */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
+          <div className="space-y-6 text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start space-x-3">
               <div 
                 className="w-12 h-12 rounded-2xl flex items-center justify-center border-3 border-white shadow-lg"
                 style={{ backgroundColor: '#9d1d25' }}
@@ -56,7 +56,7 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center justify-center md:justify-start space-x-3">
                 <div 
                   className="w-8 h-8 rounded-lg flex items-center justify-center border-2 border-white"
                   style={{ backgroundColor: '#9d1d25' }}
@@ -66,7 +66,7 @@ export default function Footer() {
                 <span className="font-bold">+54 381 419-9442</span>
               </div>
               
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center justify-center md:justify-start space-x-3">
                 <div 
                   className="w-8 h-8 rounded-lg flex items-center justify-center border-2 border-white"
                   style={{ backgroundColor: '#9d1d25' }}
@@ -76,7 +76,7 @@ export default function Footer() {
                 <span className="font-bold">San Miguel de Tucumán, Argentina</span>
               </div>
 
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center justify-center md:justify-start space-x-3">
                 <div 
                   className="w-8 h-8 rounded-lg flex items-center justify-center border-2 border-white"
                   style={{ backgroundColor: '#9d1d25' }}
@@ -88,7 +88,7 @@ export default function Footer() {
             </div>
 
             {/* Social Media */}
-            <div className="flex space-x-4 pt-4">
+            <div className="flex justify-center md:justify-start space-x-4 pt-4">
               <a
                 href="https://www.instagram.com/sorella_sstore/"
                 target="_blank"
@@ -115,8 +115,8 @@ export default function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-black text-xl mb-6 text-white" >ENLACES RÁPIDOS</h4>
+          <div className="text-center md:text-left">
+            <h4 className="font-black text-xl mb-6 text-white">ENLACES RÁPIDOS</h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
@@ -160,23 +160,23 @@ export default function Footer() {
           </div>
 
           {/* Trust Badges & Payment */}
-          <div>
+          <div className="text-center md:text-left">
             <h4 className="font-black text-xl mb-6">CONFIANZA Y SEGURIDAD</h4>
             
             <div className="space-y-6">
               {/* Trust Features */}
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center md:justify-start space-x-3">
                   <Shield className="h-5 w-5" style={{ color: '#9d1d25' }} />
                   <span className="font-bold">Compra 100% Segura</span>
                 </div>
                 
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center md:justify-start space-x-3">
                   <Truck className="h-5 w-5" style={{ color: '#9d1d25' }} />
                   <span className="font-bold">Envío Rápido y Seguro</span>
                 </div>
                 
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center justify-center md:justify-start space-x-3">
                   <CreditCard className="h-5 w-5" style={{ color: '#9d1d25' }} />
                   <span className="font-bold">Múltiples Formas de Pago</span>
                 </div>
