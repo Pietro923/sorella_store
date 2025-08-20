@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useCartStore } from '@/lib/store';
-import { getProductImage } from '@/lib/cloudinary';
 import { SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,6 +12,25 @@ import Link from 'next/link';
 interface CartProps {
   onClose?: () => void;
 }
+
+const getProductImage = (imageSource: string): string => {
+ // Si ya es URL completa de Google Drive, usarla
+ if (imageSource.startsWith('https://drive.google.com/uc?id=')) {
+   return imageSource;
+ }
+ 
+ // Si es URL en formato /file/d/, convertirla
+ if (imageSource.includes('drive.google.com/file/d/')) {
+   const fileIdMatch = imageSource.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+   if (fileIdMatch) {
+     const fileId = fileIdMatch[1];
+     return `https://drive.google.com/uc?id=${fileId}`;
+   }
+ }
+ 
+ // Fallback: placeholder local
+ return '/placeholder.png';
+};
 
 export default function Cart({ onClose }: CartProps) {
   const { items, updateQuantity, removeItem, getTotalPrice, clearCart } = useCartStore();
@@ -97,7 +115,7 @@ export default function Cart({ onClose }: CartProps) {
                 {/* Imagen del producto */}
                 <div className="relative">
                   <Image
-                    src={getProductImage(item.image, 'thumb')}
+                    src={getProductImage(item.image)}
                     alt={item.name}
                     width={80}
                     height={80}

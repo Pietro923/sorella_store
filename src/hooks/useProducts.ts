@@ -24,10 +24,11 @@ export function useProducts(): UseProductsReturn {
       setIsLoading(true);
       setError(null);
 
-      const response = await fetch('/api/products', {
+      const timestamp = new Date().getTime();
+      const response = await fetch(`/api/products?t=${timestamp}`, {
         method: 'GET',
         headers: {
-          'Cache-Control': 'no-cache',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
         },
       });
 
@@ -45,14 +46,7 @@ export function useProducts(): UseProductsReturn {
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al cargar productos');
-      
-      // Fallback: cargar productos hardcodeados
-      try {
-        const { products: fallbackProducts } = await import('@/lib/data');
-        setProducts(fallbackProducts);
-      } catch {
-        // Si falla el fallback, simplemente lo ignoramos
-      }
+      setProducts([]); // ✅ NO MORE FALLBACK - Array vacío si falla
     } finally {
       setIsLoading(false);
     }

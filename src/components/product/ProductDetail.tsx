@@ -7,7 +7,6 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useCartStore } from '@/lib/store';
-import { getProductImage } from '@/lib/cloudinary';
 import { Product } from '@/types';
 import Image from 'next/image';
 import { toast } from 'sonner';
@@ -16,6 +15,24 @@ interface ProductDetailProps {
   product: Product;
 }
 
+const getProductImage = (imageSource: string): string => {
+ // Si ya es URL completa de Google Drive, usarla
+ if (imageSource.startsWith('https://drive.google.com/uc?id=')) {
+   return imageSource;
+ }
+ 
+ // Si es URL en formato /file/d/, convertirla
+ if (imageSource.includes('drive.google.com/file/d/')) {
+   const fileIdMatch = imageSource.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+   if (fileIdMatch) {
+     const fileId = fileIdMatch[1];
+     return `https://drive.google.com/uc?id=${fileId}`;
+   }
+ }
+ 
+ // Fallback: placeholder local
+ return '/placeholder.png';
+};
 export default function ProductDetail({ product }: ProductDetailProps) {
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,7 +100,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           {/* Imagen */}
           <div className="aspect-square relative overflow-hidden border-4 border-black shadow-[8px_8px_0px_0px_#282828]">
             <Image
-              src={getProductImage(product.image, 'detail')}
+              src={getProductImage(product.image)}
               alt={product.name}
               fill
               className="object-cover"

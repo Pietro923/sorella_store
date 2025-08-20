@@ -5,11 +5,29 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useCartStore } from '@/lib/store';
-import { getProductImage } from '@/lib/cloudinary';
 import { Product } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
+
+const getProductImage = (imageSource: string): string => {
+ // Si ya es URL completa de Google Drive, usarla
+ if (imageSource.startsWith('https://drive.google.com/uc?id=')) {
+   return imageSource;
+ }
+ 
+ // Si es URL en formato /file/d/, convertirla
+ if (imageSource.includes('drive.google.com/file/d/')) {
+   const fileIdMatch = imageSource.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+   if (fileIdMatch) {
+     const fileId = fileIdMatch[1];
+     return `https://drive.google.com/uc?id=${fileId}`;
+   }
+ }
+ 
+ // Fallback: placeholder local
+ return '/placeholder.png';
+};
 
 interface ProductCardProps {
   product: Product;
@@ -40,7 +58,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Link href={`/products/${product.id}`}>
         <div className="aspect-square relative overflow-hidden border-b-4 border-black">
           <Image
-            src={getProductImage(product.image, 'card')}
+            src={getProductImage(product.image)}
             alt={product.name}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-500"

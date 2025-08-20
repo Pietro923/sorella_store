@@ -1,7 +1,8 @@
+// src/components/CategoryFilter.tsx - CORREGIDO:
+
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { categories } from '@/lib/data';
 import { Smartphone } from 'lucide-react';
 
 interface CategoryFilterProps {
@@ -12,7 +13,8 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ 
   selectedCategory, 
-  onCategoryChange 
+  onCategoryChange,
+  categories // ✅ USAR LA PROP, NO EL IMPORT
 }: CategoryFilterProps) {
   return (
     <div className="space-y-4">
