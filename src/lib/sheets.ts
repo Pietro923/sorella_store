@@ -1,4 +1,5 @@
 // src/lib/sheets.ts
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Product } from '@/types';
 
 export async function getProductsFromSheets(): Promise<Product[]> {
